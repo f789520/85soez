@@ -1,6 +1,6 @@
 from asyncio.windows_events import NULL
 from pickle import NONE
-import firebase_admin
+import firebase_admin   
 from firebase_admin import firestore
 from firebase_admin import credentials
 import re
@@ -48,7 +48,7 @@ headers = {
   'sec-ch-ua-mobile': '?0',
   'sec-ch-ua-platform': '"Windows"'
 }
-for pg in range(1,12):
+for pg in range(1,2):
     try:
        
         url = "https://www.104woo.com.tw/Search/Index?1=1&pg="+str(pg)+"&ps=100&sc=4,1"
@@ -513,43 +513,43 @@ for pg in range(1,12):
                     "ids":ids,
                     'arg_c': arg_c,
                     'arg_no': arg_no,
-                    "public_build_ratio": public_build_ratio,
-                    "main_building": main_building,
-                    "total_area": total_area,
-                    "court": court,
-                    "popular": popular,
-                    "address": address,
-                    "thisId": thisId,
-                    "url_c": url_c,
-                    "city": city,
-                    "url_no": url_no,
-                    "times": times,
-                    "date_th": date_th,
-                    "time_th": time_th,
-                    "building_area": building_area,
-                    "lend_area": lend_area,
-                    "building_ratio": building_ratio,
-                    "house_per_price": house_per_price,
-                    "house_total_lowprice": house_total_lowprice,
-                    "real_price": real_price,
-                    "caution_money": caution_money,
-                    "result_price": result_price,
-                    "open_price": open_price,
-                    "after_result_price": after_result_price,
-                    "house_years": house_years,
-                    "community_name": community_name,
-                    "contentLand": contentLand2,
-                    "contentCase": contentCase2,
-                    "contentRecord": contentRecord2,
-                    "winner": winner,
-                    "record": record2,
-                    "increase": increase2,
-                    "license": license,
-                    "img_list": img_list,
+                    "public_build_ratio": public_build_ratio,# 公設比
+                    "main_building": main_building,# 主建物
+                    "total_area": total_area,# 總坪數
+                    "court": court, # 法院
+                    "popular": popular,# 人氣數量
+                    "address": address,# 地址
+                    "thisId": thisId, # thisId 110逸116965
+                    "url_c": url_c, # 網址 c
+                    "city": city,  # city  
+                    "url_no": url_no, # 網址 no
+                    "times": times,  # 第幾拍
+                    "date_th": date_th,# 投標日期
+                    "time_th": time_th,# 投標時間
+                    "building_area": building_area,# 建坪
+                    "lend_area": lend_area, # 地坪
+                    "building_ratio": building_ratio,  # 類建蔽率
+                    "house_per_price": house_per_price,# 房屋單價
+                    "house_total_lowprice": house_total_lowprice, # 總底價
+                    "real_price": real_price,# 實價交易
+                    "caution_money": caution_money,# 保證金
+                    "result_price": result_price,# 開標結果
+                    "open_price": open_price,# 公告現值 元/㎡
+                    "after_result_price": after_result_price,# 拍後增值
+                    "house_years": house_years, # 屋齡
+                    "community_name": community_name, # 社區名稱
+                    "contentLand": contentLand2,# 土地  
+                    "contentCase": contentCase2,# 建物
+                    "contentRecord": contentRecord2,# 查封筆錄
+                    "winner": winner, # 得標人查詢
+                    "record": record2,# 拍賣紀錄
+                    "increase": increase2,# 土地漲價總額
+                    "license": license,# 社區資料 
+                    "img_list": img_list, # 照片
 
                 }
                 # print("doc", doc)
-                doc_ref = db.collection("85soez").document(ids)
+                doc_ref = db.collection("soez").document(ids)
                 doc_ref.set(doc)
             except Exception:
                 print('doc發生錯誤')

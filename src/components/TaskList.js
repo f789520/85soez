@@ -34,14 +34,14 @@ const TaskItemContainer = styled.div`
 
 function TaskList(props, state) {
 
-  // console.log("TaskList this.props", props);
+  console.log("TaskList this.props", props);
   // console.log("TaskList this.state", state);
   // const { mapStateToPropstodosbook } = props
   // console.log("mapStateToPropstodosbook", mapStateToPropstodosbook);
 
-  useFirestoreConnect([
-    { collection: 'todosbook' }
-  ]);
+  // useFirestoreConnect([
+  //   { collection: 'todosbook' }
+  // ]);
   const tasks = useSelector((store) => store.todosReducer);
   const filter = useSelector((store) => store.filterReducer);
   const firebaseData = useSelector((store) => store.firestoreReducer);
@@ -99,9 +99,9 @@ function TaskList(props, state) {
 
 
 const mapStateToProps = (state) => { 
-  // console.log("mapStateToProps = (state) ",state  )
+  console.log("mapStateToProps = (state) ",state  )
   return {
-    mapStateToPropstodosbook: state.firestoreReducer.ordered.todosbook
+    mapStateToPropstodosbook: state.firestoreReducer.ordered
   }
 }
-export default compose(firestoreConnect(['todosbook']), connect(mapStateToProps))(TaskList)  //test3
+export default compose(firestoreConnect(['soez']), connect(mapStateToProps))(TaskList)  //test3
