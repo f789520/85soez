@@ -96,11 +96,11 @@ function  Home(props) {
         {/* 將FIREBASE資料庫傳到裡面  <Features data={landingPageData.Features }  storepropsdata={props} /> */}
         <Features data={landingPageData.Features }/> 
         <br/>
-        <About data={landingPageData.About} />
-        <Services data={landingPageData.Services} />
-        <Gallery data={landingPageData.Gallery} />
+        {/* <About data={landingPageData.About} /> */}
+        {/* <Services data={landingPageData.Services} /> */}
+        {/* <Gallery data={landingPageData.Gallery} /> */}
         {/* <Testimonials data={landingPageData.Testimonials} /> */}
-        <Team data={landingPageData.Team} />
+        {/* <Team data={landingPageData.Team} /> */}
         <Contact data={landingPageData.Contact} />
       </div>
       {/* <ListBtn /> */}

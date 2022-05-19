@@ -15,7 +15,7 @@ export const Navigation = (props) => {
             <span className='icon-bar'></span>{' '}
             <span className='icon-bar'></span>{' '}
           </button>
-          <a className='navbar-brand page-scroll' href='#page-top'>
+          <a className='navbar-brand page-scroll' href='/'>
             85 SOEZ
           </a>{' '}
         </div>
@@ -26,23 +26,23 @@ export const Navigation = (props) => {
         >
           <ul className='nav navbar-nav navbar-right'>
             <li>
-              <a href='#features' className='page-scroll'  style={{ }}>
-                物件查詢
+              <a href='/' className='page-scroll'  style={{ }}>
+                首頁/物件查詢
               </a>
             </li>
             <li>
-              <a href='#about' className='page-scroll'>
-                關於85soez
+              <a href='/about' className='page-scroll'>
+                關於我們
               </a>
             </li>
             <li>
-              <a href='#services' className='page-scroll'>
+              <a href='/services' className='page-scroll'>
                 代標服務
               </a>
             </li>
             <li>
-              <a href='#portfolio' className='page-scroll'>
-                Gallery?
+              <a href='/portfolio' className='page-scroll'>
+                案例
               </a>
             </li>
             {/* <li>
@@ -50,11 +50,11 @@ export const Navigation = (props) => {
                 客戶回饋?
               </a>
             </li> */}
-            <li>
+            {/* <li>
               <a href='#team' className='page-scroll'>
-                我們團隊
+                團隊介紹
               </a>
-            </li>
+            </li> */}
             <li>
               <a href='#contact' className='page-scroll'>
                 Contact

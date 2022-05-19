@@ -105,7 +105,7 @@ export const Features = (props, state) => {
     <div id='features' className='text-center'>
       <div className='container'>
         <div className='col-md-10 col-md-offset-1 section-title'>
-          <br /><br /><br /><br />
+          {/* <br /><br /><br /><br /> */}
           <h2>物件查詢</h2>
         </div>
         <div className='row'>

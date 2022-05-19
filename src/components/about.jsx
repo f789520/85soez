@@ -1,5 +1,33 @@
+import { Navigation } from "./navigation";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import React from 'react'
+import { useState, useEffect } from "react";
+ 
+import { Header } from "./header";
+import { Features } from "./features";
+ 
+import { Services } from "./services";
+import { Gallery } from "./gallery";
+import { Testimonials } from "./testimonials";
+import { Team } from "./Team";
+import { Contact } from "./contact";
+import JsonData from "../data/data.json";
+import SmoothScroll from "smooth-scroll";
+import "./app.css"; 
+
+
+
 export const About = (props) => {
+
+
+  const [landingPageData, setLandingPageData] = useState({});
+  useEffect(() => {
+    setLandingPageData(JsonData);
+  }, []);
   return (
+<div>
+    <Navigation />
     <div id="about">
       <div className="container">
         <div className="row">
@@ -37,5 +65,11 @@ export const About = (props) => {
         </div>
       </div>
     </div>
+
+    <Team data={landingPageData.Team} />
+    <Contact data={landingPageData.Contact} />
+    </div>
+
+    
   );
 };

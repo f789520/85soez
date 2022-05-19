@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import emailjs from 'emailjs-com'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import st
 const initialState = {
   name: '',
   email: '',
@@ -34,6 +37,7 @@ export const Contact = (props) => {
   }
   return (
     <div>
+  
       <div id='contact'>
         <div className='container'>
           <div className='col-md-8'>
@@ -41,7 +45,7 @@ export const Contact = (props) => {
               <div className='section-title'>
                 <h2>聯絡我們</h2>
                 <p>
-                  有任何問題，請聯絡我們，會盡快為您服務
+                  有任何問題，請聯絡我們，會盡快為您服務 
                 </p>
               </div>
               <form name='sentMessage' validate onSubmit={handleSubmit}>
@@ -92,8 +96,10 @@ export const Contact = (props) => {
                   送出問題
                 </button>
               </form>
+
             </div>
           </div>
+          <hr style={{opacity:"0.1" ,background:"black" ,width: "100%",    height: "1px"}}/>
           <div className='col-md-3 col-md-offset-1 contact-info'>
             <div className='contact-item'>
               <h3>聯絡資訊</h3>
@@ -124,20 +130,43 @@ export const Contact = (props) => {
           <div className='col-md-12'>
             <div className='row'>
               <div className='social'>
+
+              
+
                 <ul>
-                  <li>
+                <li>
                     <a href={props.data ? props.data.facebook : '/'}>
-                      <i className='fa fa-facebook'></i>
+                      <i className='fa fa-facebook-official'></i>
+                      <p style={{color:"white"}}>粉絲專頁</p>
                     </a>
                   </li>
                   <li>
-                    <a href={props.data ? props.data.twitter : '/'}>
-                      <i className='fa fa-twitter'></i>
+                    <a href={props.data ? props.data.facebook : '/'}>
+                      <i className='fa fa-facebook'></i>
+                      <p style={{color:"white"}}>法拍小哥</p>
+                    </a>
+                  </li>
+                 
+                  <li>
+                    
+                    <a href={props.data ? props.data.line : '/'}>
+                      <i className='fa'>Line</i>
+                      
+                      {/* <FontAwesomeIcon icon={brands('twitter')} /> */}
+                      <p style={{color:"white"}}>加入好友</p>
                     </a>
                   </li>
                   <li>
                     <a href={props.data ? props.data.youtube : '/'}>
-                      <i className='fa fa-youtube'></i>
+                      <i className='fa fa-youtube fa-5x'></i>
+                     
+                      <p style={{color:"white"}}>Youtube</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href={props.data ? props.data.instagram : '/'}>
+                      <i className='fa fa-instagram'></i>
+                      <p style={{color:"white"}}>Instagram</p>
                     </a>
                   </li>
                 </ul>
