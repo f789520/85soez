@@ -10,10 +10,11 @@ import { Services } from "./services";
 import { Gallery } from "./gallery";
 import { Testimonials } from "./testimonials";
 import { Team } from "./Team";
+import { DetailItem } from "./detail";
 import { Contact } from "./contact";
 import JsonData from "../data/data.json";
 import SmoothScroll from "smooth-scroll";
-import "./app.css"; 
+import "./app.css";
 import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
 // import MOCK_DATA from '..data/MOCK_DATA'
 // import makeData from '..data/makeData'
@@ -26,7 +27,7 @@ import Filter from "./Filter";
 import TaskItem from "./TaskItem";
 import { connect } from 'react-redux'
 import db from './fire'
- 
+
 import {
   collection,
   onSnapshot,
@@ -35,6 +36,8 @@ import {
 } from 'firebase/firestore'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { useSearchParams } from 'react-router-dom';
+
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
   speedAsDuration: true,
@@ -42,78 +45,53 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 
  
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin:20px;
-`;
-
-
-const Button = styled.div`
-  background-color: ${(props) => (props.active ? "#ffc236" : "#bebebe")};
-  border: none;
-  border-bottom: 2px solid #3c5d95;
-  border-radius: 3px 3px 0 0;
-  padding: 5px;
-  color: black;
-  letter-spacing: 0.1em;
-  text-align: center;
-  cursor: pointer;
-  width:90px;
-`;
-
-
-function ListBtn() {
-  return (
-    <ButtonContainer>
-      <Button>
-        <Link to='/list'>Todolist</Link>
-      </Button>
-    </ButtonContainer>
-  );
-};
-
-function  Home(props) {
+function Detail() {
+  const tasks = useSelector((store) => store);
+  console.log("Detailtasks", tasks)
 
   const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
     setLandingPageData(JsonData);
   }, []);
 
-  /* console.log("Homeprops", props); */
-  /* const { mapStateToPropstodosbook } = props
-  const firebaseData = useSelector((store) => store.firestoreReducer); */
 
+  const [searchParams] = useSearchParams();
+  console.log("searchParams", searchParams.get('ids')); // ▶ URLSearchParams {}
 
   return (
     <div>
       <div>
         <Navigation />
-    
-        <Header data={landingPageData.Header} />
-      <hr style={{opacity:"0.1" ,background:"black" ,width: "100%",    height: "1px"}}/>
-       
-        {/* 將FIREBASE資料庫傳到裡面  <Features data={landingPageData.Features }  storepropsdata={props} /> */}
+        <br />
+        <br />
+        <br />
+        <DetailItem searchParams={searchParams} />
+        <br />
+        <br />
+        <br />
+        <br />
+        {/* <Header data={landingPageData.Header} />
         <Features data={landingPageData.Features }/> 
-        <br/>
         <About data={landingPageData.About} />
         <Services data={landingPageData.Services} />
         <Gallery data={landingPageData.Gallery} />
-        {/* <Testimonials data={landingPageData.Testimonials} /> */}
-        <Team data={landingPageData.Team} />
+        <Team data={landingPageData.Team} /> */}
+        {/* <About data={landingPageData.About} /> */}
+        <br />
+        <br />
         <Contact data={landingPageData.Contact} />
       </div>
-      {/* <ListBtn /> */}
+
     </div>
 
   );
 };
 
 
-export default Home; 
+export default Detail;
 
 // 將FIREBASE資料庫傳到裡面
-// const mapStateToProps = (state) => { 
+// const mapStateToProps = (state) => {
 //   /* console.log("mapStateToProps = (state) ",state  ) */
 //   return {
 //     mapStateToPropssoez: state.firestoreReducer.ordered

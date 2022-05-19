@@ -5,7 +5,7 @@ export const Image = ({ title, largeImage, smallImage }) => {
         {' '}
         <a
           href={largeImage}
-          title={title}
+          title={title   } 
           data-lightbox-gallery='gallery1'
         >
           <div className='hover-text'>

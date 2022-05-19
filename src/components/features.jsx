@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import React, { useMemo } from 'react'
-import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
-import MOCK_DATA from './MOCK_DATA'
-import makeData from './makeData'
+import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce, usePagination } from 'react-table'
+// import MOCK_DATA from '..data/MOCK_DATA'
+// import makeData from '..data/makeData'
+import soezdata from '../data/soezdata.json'
 import { COLUMNS } from './columns'
 import { STORECOLUMNS } from './storecolumns'
 import { GlobalFilter } from './GlobalFilter'
+import { createStore } from "redux"
 // import { ColumnFilter } from './ColumnFilter'
 import './table.css'
 import axios from 'axios';
@@ -91,24 +93,9 @@ const SearchList = styled.div.attrs({ className: 'SearchList' })`
 
 
 export const Features = (props, state) => {
-  console.log("Features props", props)
-  // console.log("Features state", state)
-  // useFirestoreConnect([
-  //   { collection: 'soez' }
-  // ]);
+  console.log("Featuresprops", props)
+  console.log("Featuresstate", state)
 
-  // const firebaseData = useSelector((store) => store.firestoreReducer);
-
-  // const [soez, setTodos] = useState([{ taskName: "Loading...", idnn: "initial" }]);
-  // console.log("todosbook", todosbook);
-  // useEffect(() => {
-  //   const collectionRef = collection(db, "85soez");
-  //   const q = query(collectionRef, orderBy("timestamp", "desc"));
-  //   const unsub = onSnapshot(q, (snapshot) =>
-  //     setTodos(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-  //   );
-  //   return unsub;
-  // }, []);
 
 
 
@@ -118,33 +105,15 @@ export const Features = (props, state) => {
     <div id='features' className='text-center'>
       <div className='container'>
         <div className='col-md-10 col-md-offset-1 section-title'>
+          <br /><br /><br /><br />
           <h2>物件查詢</h2>
         </div>
         <div className='row'>
           {/* <Apptest storepropsdata={props.storepropsdata} /> */}
           <div className='col-xs-6 col-md-3'>
-
-            
-
-            {/* <SearchListContainer  >
-
-              <SearchList  >
-                <SearchBox >拍次</SearchBox>
-                <SearchBox >投標日</SearchBox>
-                <SearchBox >拍賣狀態</SearchBox>
-                <SearchBox >法拍屋地址</SearchBox>
-                <SearchBox >類型</SearchBox>
-                <SearchBox >總坪數</SearchBox>
-                <SearchBox >公告底價</SearchBox>
-                <SearchBox >單價</SearchBox>
-
-              </SearchList> */}
-
-
-            {/* </SearchListContainer > */}
           </div>
-          <BasicTable storepropsdata={props.storepropsdata} />
-
+          {/* <BasicTable storepropsdata={props.storepropsdata} /> */}
+          <BasicTable />
 
         </div>
       </div>
@@ -274,20 +243,40 @@ export const Features = (props, state) => {
 export const BasicTable = (props) => {
 
 
-  // useFirestoreConnect([
-  //   { collection: 'soez' }
-  // ]);
-  // const { mapStateToPropssoez } = props
-  // console.log("BasicTableprops", props.storepropsdata.mapStateToPropssoez.soez )
-  const StoreData = props.storepropsdata.mapStateToPropssoez.soez
-
-  // console.log("BasicTablestate", state)
-  // console.log("state", )
+  // const StoreData = props.storepropsdata.mapStateToPropssoez.soez
 
 
-  // Use the state and functions returned from useTable to build your UI
   const columns = useMemo(() => STORECOLUMNS, [])
-  const data = useMemo(() => StoreData, [])
+  const data = useMemo(() => soezdata, [])
+
+  console.log("BasicTablecolumns", columns)
+  console.log("BasicTablecolumnssoezdata", soezdata)
+  console.log("BasicTablecolumnsprops", props)
+
+  //設定動作，雖然現在是空的
+  // const readsoezdata = article => ({ type: 'readsoezdata', payload: article })
+  //將描述各個動作對資料的行為
+  // const soezReducer = (state = soezdata, action) => {
+  //   console.log("soezReducerBasicTablecolumnsstate", state)
+  //   switch (action.type) {
+  //     case "readsoezdata":
+  //       break;
+  //     default:
+  //       return state
+  //   }
+  // }
+
+  //建立保管資料的store
+  // const store = createStore(soezReducer)
+  // console.log("BasicTablecolumnsstore", store)
+ //檢查store
+  // console.log("BasicTablecolumnsstoregetState", store.getState())
+  //測試用加上去的，等等再把它拿掉：
+  // window.store = store;
+  // window.readsoezdata = readsoezdata;
+   
+
+
 
   //要照這這個參數走
   const {
@@ -295,28 +284,40 @@ export const BasicTable = (props) => {
     getTableBodyProps,
     headerGroups,
     footerGroups,
-    rows,
+    // rows,
+    page,
+    nextPage,
+    previousPage,
+    canPreviousPage,
+    canNextPage,
     prepareRow,
+    pageOptions,
+    setPageSize,
+    gotoPage,
+    pageCount,
     state,
+    // state,
     setGlobalFilter
   } = useTable({
 
     columns,
-    data
-
+    data,
+    initialState: { pageIndex: 0 }
   },
-    
+
     useFilters,
     useGlobalFilter,
-    useSortBy,)
+    useSortBy,
+    usePagination)
 
 
-  const { globalFilter } = state
+  const { globalFilter, pageIndex, pageSize } = state
+  console.log("BasicTablecolumnsstate", state)
   return (
     <>
-       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
-       <div >(點擊欄位可排序)</div>
+      <div style={{ textAlign: "right", color: "red" }}>(點擊欄位可排序)</div>
       {/* Render the UI for your table */}
       <table {...getTableProps()}>
         <thead>
@@ -339,7 +340,7 @@ export const BasicTable = (props) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
+          {page.map(row => {
             prepareRow(row)
             return (
               <tr {...row.getRowProps()}>
@@ -350,7 +351,7 @@ export const BasicTable = (props) => {
             )
           })}
         </tbody>
-        <tfoot>
+        {/* <tfoot>
           {footerGroups.map(footerGroup => (
             <tr {...footerGroup.getFooterGroupProps()}>
               {footerGroup.headers.map(column => (
@@ -358,11 +359,53 @@ export const BasicTable = (props) => {
               ))}
             </tr>
           ))}
-        </tfoot>
+        </tfoot> */}
       </table>
+      <br></br>
+      <span>
+        到第  {' '}
+        <input
+          type='number'
+          defaultValue={pageIndex + 1}
+          onChange={e => {
+            const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
+            gotoPage(pageNumber)
+          }}
+          // eslint-disable-next-line no-undef
+          style={{ width: '50px', textAlign: "center" }}
+        />  頁
+      </span>{' '}
+
+      <span>
+        <br></br>
+        頁數: {' '}
+        <strong >
+          第 {' '} <span style={{ color: "red" }} >{pageIndex + 1} </span >頁 , 共  {pageOptions.length}  頁
+        </strong>{' '}
+      </span >
+      <div style={{ height: "5px" }} ></div>
+      <div>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'|<<'}
+        </button>{' '}
+        <span> &nbsp; </span>
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          上一頁
+        </button>{' '}
+        <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          下一頁
+        </button>{' '}
+        <span> &nbsp; </span>
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>|'}
+        </button>{' '}
+
+      </div>
     </>
   )
 }
+ 
 
 
 // const mapStateToProps = (state) => {

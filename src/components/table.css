@@ -7,11 +7,14 @@ table {
   table td,
   table th {
     border: 1px solid #ddd;
+    
     padding: 8px;
+    font-size: 20px;
+    color:rgb(0, 0, 0);
   }
   
   table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f8f7f7;
   }
   
   table tr:hover {

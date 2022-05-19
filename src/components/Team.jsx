@@ -10,6 +10,7 @@ export const Team = (props) => {
           </p>
         </div>
         <div id='row'>
+          {console.log('Team',props)} 
           {props.data
             ? props.data.map((d, i) => (
                 <div key={`${d.name}-${i}`} className='col-md-3 col-sm-6 team'>

@@ -20,7 +20,7 @@
   },
   "Gallery": [
     {
-      "title": "Project Title",
+      "title": "台中七期",
       "largeImage": "img/portfolio/01-large.jpg",
       "smallImage": "img/portfolio/01-small.jpg"
     },
@@ -132,29 +132,20 @@
   "Team": [
     {
       "img": "img/team/01.jpg",
-      "name": "John Doe",
-      "job": "Director"
+      "name": "陳俊廷-法拍小哥",
+      "job": "創辦人"
     },
     {
       "img": "img/team/02.jpg",
       "name": "Mike Doe",
       "job": "Senior Designer"
-    },
-    {
-      "img": "img/team/03.jpg",
-      "name": "Jane Doe",
-      "job": "Senior Designer"
-    },
-    {
-      "img": "img/team/04.jpg",
-      "name": "Karen Doe",
-      "job": "Project Manager"
-    }
+    } 
+     
   ],
   "Contact": {
     "address": "4321 California St, San Francisco, CA 12345 ",
-    "phone": "+1 123 456 1234",
-    "email": "info@company.com",
+    "phone": "0988274076",
+    "email": "85soez@gmail.com",
     "facebook": "fb.com",
     "twitter": "twitter.com",
     "youtube": "youtube.com"

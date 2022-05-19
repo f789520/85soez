@@ -39,10 +39,9 @@ export const Contact = (props) => {
           <div className='col-md-8'>
             <div className='row'>
               <div className='section-title'>
-                <h2>Get In Touch</h2>
+                <h2>聯絡我們</h2>
                 <p>
-                  Please fill out the form below to send us an email and we will
-                  get back to you as soon as possible.
+                  有任何問題，請聯絡我們，會盡快為您服務
                 </p>
               </div>
               <form name='sentMessage' validate onSubmit={handleSubmit}>
@@ -54,7 +53,7 @@ export const Contact = (props) => {
                         id='name'
                         name='name'
                         className='form-control'
-                        placeholder='Name'
+                        placeholder='請輸入名字'
                         required
                         onChange={handleChange}
                       />
@@ -68,7 +67,7 @@ export const Contact = (props) => {
                         id='email'
                         name='email'
                         className='form-control'
-                        placeholder='Email'
+                        placeholder='請輸入電子信箱'
                         required
                         onChange={handleChange}
                       />
@@ -82,7 +81,7 @@ export const Contact = (props) => {
                     id='message'
                     className='form-control'
                     rows='4'
-                    placeholder='Message'
+                    placeholder='任何問題請輸入此欄...'
                     required
                     onChange={handleChange}
                   ></textarea>
@@ -90,17 +89,17 @@ export const Contact = (props) => {
                 </div>
                 <div id='success'></div>
                 <button type='submit' className='btn btn-custom btn-lg'>
-                  Send Message
+                  送出問題
                 </button>
               </form>
             </div>
           </div>
           <div className='col-md-3 col-md-offset-1 contact-info'>
             <div className='contact-item'>
-              <h3>Contact Info</h3>
+              <h3>聯絡資訊</h3>
               <p>
                 <span>
-                  <i className='fa fa-map-marker'></i> Address
+                  <i className='fa fa-map-marker'></i> 地址
                 </span>
                 {props.data ? props.data.address : 'loading'}
               </p>
@@ -108,7 +107,7 @@ export const Contact = (props) => {
             <div className='contact-item'>
               <p>
                 <span>
-                  <i className='fa fa-phone'></i> Phone
+                  <i className='fa fa-phone'></i> 電話
                 </span>{' '}
                 {props.data ? props.data.phone : 'loading'}
               </p>
@@ -116,7 +115,7 @@ export const Contact = (props) => {
             <div className='contact-item'>
               <p>
                 <span>
-                  <i className='fa fa-envelope-o'></i> Email
+                  <i className='fa fa-envelope-o'></i> 信箱
                 </span>{' '}
                 {props.data ? props.data.email : 'loading'}
               </p>
@@ -150,10 +149,10 @@ export const Contact = (props) => {
       <div id='footer'>
         <div className='container text-center'>
           <p>
-            &copy; 2020 Issaaf Kattan React Land Page Template. Design by{' '}
-            <a href='http://www.templatewire.com' rel='nofollow'>
-              TemplateWire
-            </a>
+            &copy; 2022 Copyright 85 SOEZ 法拍網. All Rights Reserved. Design by{' '}
+            {/* <a href='http://www.templatewire.com' rel='nofollow'> */}
+              Jay
+            {/* </a> */}
           </p>
         </div>
       </div>

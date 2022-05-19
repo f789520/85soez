@@ -1,11 +1,13 @@
 import { format } from 'date-fns'
-
+import { Link } from 'react-router-dom'
 export const STORECOLUMNS = [
       //   thisId 案號
       {
         Header: '案號',
         Footer: '案號',
-        accessor: 'thisId'
+        accessor: 'thisId',
+        Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>
+         
     },
     // 拍次
     {
@@ -35,6 +37,7 @@ export const STORECOLUMNS = [
         Header: '地址',
         Footer: '地址',
         accessor: 'address',
+        Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>
     },
   
     //   # 總底價
@@ -47,14 +50,16 @@ export const STORECOLUMNS = [
     {
         Header: '地坪',
         Footer: '地坪',
-        accessor: 'lend_area'
+        accessor: 'lend_area',
+        // Cell: ({ cell: { value }, row: { original }   }) => <Link to={`detail/${original.id}`}>{value}{console.log("value",value) }{console.log("original",original.ids)} </Link>
     },
    
     // ids
     {
-        Header: 'ids',
-        Footer: 'ids',
-        accessor: 'ids'
+        Header: '物件編號', 
+        Footer: '物件編號',
+        accessor: 'ids',
+        Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>
     },
 
 ]
