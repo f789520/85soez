@@ -277,7 +277,7 @@ for pg in range(1, 2):
             try:
                 # 地坪
                 lend_area = detail_Soup.find(
-                    "span", attrs={"data-th": "地坪"}).contents[0]
+                    "span", attrs={"data-th": "地坪"}).contents[0].split(' ')[0]
                 print("lend_area", lend_area)
             except Exception:
                 lend_area = ""
@@ -307,8 +307,8 @@ for pg in range(1, 2):
             try:
                 # 總底價
                 house_total_lowprice = ' '.join(detail_Soup.find(
-                    "span", attrs={"data-th": "總底價"}).string.strip().split())
-                print("house_total_lowprice", house_total_lowprice)
+                    "span", attrs={"data-th": "總底價"}).string.strip().split()).split(' ')[0]
+                print("house_total_lowprice", house_total_lowprice.split(' ')[0])
             except Exception:
                 house_total_lowprice = ""
                 print('總底價發生錯誤')

@@ -35,16 +35,17 @@ const InputSearch = styled.input.attrs({ className: 'InputSearch' })`
 `;
 
 
-export const GlobalFilter = ({ filter, setFilter }) => {
+export const GlobalFilter = ({ filter, setFilter,preGlobalFilteredRows }) => {
+    const count = preGlobalFilteredRows.length
     const [value, setValue] = useState(filter)
     const onChange = useAsyncDebounce(value => {
         setFilter(value || undefined)
     }, 1000)
 
-    const [valuetest, setValuetest] = useState(filter)
-    const onChangetest = useAsyncDebounce(valuetest => {
-        setFilter(valuetest || undefined)
-    }, 1000)
+    // const [valuetest, setValuetest] = useState(filter)
+    // const onChangetest = useAsyncDebounce(valuetest => {
+    //     setFilter(valuetest || undefined)
+    // }, 1000)
 
 
     return (
@@ -58,7 +59,7 @@ export const GlobalFilter = ({ filter, setFilter }) => {
                     onChange(e.target.value);
                 }}
             > 高雄 </FilterButton> */}
-
+{/* 
             <Areaselect  name="地區" id="area-select"    
                     onChange={e => {
                     setValue("");
@@ -70,11 +71,11 @@ export const GlobalFilter = ({ filter, setFilter }) => {
                 <option value="台中">台中</option>
                 <option value="新竹">新竹</option>
               
-            </Areaselect>
+            </Areaselect> */}
 
             <InputSearch
                 value={value || ''}
-                placeholder="請輸入關鍵字查詢物件..."
+                placeholder=  {`  請輸入關鍵字查詢物件...`}
                 onChange={e => {
                     // if(value!=""){
 

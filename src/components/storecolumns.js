@@ -1,28 +1,35 @@
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
+import {ColumnFilterTimes,ColumnFilterResult, ColumnFilter ,SliderColumnFilter,LandNumberRangeColumnFilter,NumberRangeColumnFilter,ColumnFilterArea } from './ColumnFilter'
+
+
 export const STORECOLUMNS = [
       //   thisId 案號
       {
         Header: '案號',
         Footer: '案號',
         accessor: 'thisId',
-        Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>
-         
+        Filter:ColumnFilter,
+        Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>,
+        // disableFilters:true
     },
     // 拍次
     {
         Header: '拍次',
         Footer: '拍次',
         accessor: 'times',
-        disableFilters: true,
-        sticky: 'left'
+        // disableFilters: true,
+        // sticky: 'left',
+        Filter: ColumnFilterTimes,
+       
     },
     //   # 投標日期
     {
         Header: '投標日期',
         Footer: '投標日期',
         accessor: 'date_th',
-        sticky: 'left'
+        // sticky: 'left',
+        Filter: ColumnFilter,
     },
 
     //   # 開標結果
@@ -30,37 +37,53 @@ export const STORECOLUMNS = [
         Header: '開標結果',
         Footer: '開標結果',
         accessor: 'result_price',
-        sticky: 'left'
+        sticky: 'left',
+        Filter: ColumnFilterResult,
     },
     //   # 地址
     {
         Header: '地址',
         Footer: '地址',
         accessor: 'address',
+        Filter: ColumnFilterArea,
         Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>
     },
   
     //   # 總底價
     {
-        Header: '總底價',
+        Header: '總底價 (萬)',
         Footer: '總底價',
-        accessor: 'house_total_lowprice'
+        accessor: 'house_total_lowprice',
+        Filter: NumberRangeColumnFilter,
+        filter: 'between',
     },
     //   # 地坪
     {
-        Header: '地坪',
+        Header: '地坪 (坪)',
         Footer: '地坪',
         accessor: 'lend_area',
+        disableFilters:true,
+        Filter: LandNumberRangeColumnFilter,
         // Cell: ({ cell: { value }, row: { original }   }) => <Link to={`detail/${original.id}`}>{value}{console.log("value",value) }{console.log("original",original.ids)} </Link>
-    },
+    },  
+    //   # 建坪
+    // {
+    //     Header: '建坪 (坪)',
+    //     Footer: '建坪',
+    //     accessor: 'building_area',
+    //     Filter: NumberRangeColumnFilter,
+    //     // Cell: ({ cell: { value }, row: { original }   }) => <Link to={`detail/${original.id}`}>{value}{console.log("value",value) }{console.log("original",original.ids)} </Link>
+    // },
+   
    
     // ids
-    {
-        Header: '物件編號', 
-        Footer: '物件編號',
-        accessor: 'ids',
-        Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>
-    },
+    // {
+    //     Header: '物件編號', 
+    //     Footer: '物件編號',
+    //     accessor: 'ids',
+    //     Filter: ColumnFilter,
+    //     Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>
+    // },
 
 ]
 

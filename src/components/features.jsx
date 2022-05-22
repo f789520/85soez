@@ -7,6 +7,7 @@ import soezdata from '../data/soezdata.json'
 import { COLUMNS } from './columns'
 import { STORECOLUMNS } from './storecolumns'
 import { GlobalFilter } from './GlobalFilter'
+import { ColumnFilter } from './ColumnFilter'
 import { createStore } from "redux"
 // import { ColumnFilter } from './ColumnFilter'
 import './table.css'
@@ -27,35 +28,35 @@ import {
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 
-
 const Styles = styled.div`
-  padding: 1rem;
 
-  table {
-    border-spacing: 0;
-    border: 1px solid black;
+@media (max-width: 360px) { 
+ th:nth-of-type(1),  th:nth-of-type(4),  th:nth-of-type(7),  td:nth-of-type(1), td:nth-of-type(4),  td:nth-of-type(7) ,    th:nth-of-type(6) ,   td:nth-of-type(6),   th:nth-of-type(2), td:nth-of-type(2){
+display: none;
+font-size: 10px;
+}
+th:nth-of-type(3), td:nth-of-type(3), th:nth-of-type(5), td:nth-of-type(5){
+font-size: 20px;
+}
+}
 
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
+@media (min-width: 570px)and (max-width: 1200px) { 
+th:nth-of-type(4), th:nth-of-type(7),   td:nth-of-type(4), td:nth-of-type(7) ,  th:nth-of-type(2), td:nth-of-type(2){
+display: none;
+} 
+.featuretable  { 
+font-size: 20px;
+}
+}
 
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-
-      :last-child {
-        border-right: 0;
-      }
-    }
-  }
-`
+@media (min-width: 360px)and (max-width: 570px) { 
+th:nth-of-type(4), th:nth-of-type(7),   td:nth-of-type(4), td:nth-of-type(7) ,  th:nth-of-type(2), td:nth-of-type(2), th:nth-of-type(1), td:nth-of-type(1){
+display: none;
+}
+.featuretable {
+ font-size: 20px;
+ }
+}`
 
 const SearchListContainer = styled.div.attrs({ className: 'SearchListContainer' })`
   min-width: 360px;
@@ -82,7 +83,7 @@ const SearchBox = styled.div.attrs({ className: 'SearchBox' })`
 
 const SearchList = styled.div.attrs({ className: 'SearchList' })`
    display: grid;
-    grid-template-columns:1fr 1fr 0.8fr 1fr 0.5 npm install react-table --savefr 1fr 0.8fr 0.5fr ;
+    grid-template-columns:1fr 1fr 0.8fr 1fr  0.5fr ;
     grid-column-gap: 8px;
     grid-row-gap: 1em;
     text-align:center;
@@ -248,6 +249,13 @@ export const BasicTable = (props) => {
 
   const columns = useMemo(() => STORECOLUMNS, [])
   const data = useMemo(() => soezdata, [])
+  const defaultColumn = React.useMemo(
+    () => ({
+      Filter: ColumnFilter,
+
+    }),
+    []
+  )
 
   console.log("BasicTablecolumns", columns)
   console.log("BasicTablecolumnssoezdata", soezdata)
@@ -269,12 +277,12 @@ export const BasicTable = (props) => {
   //建立保管資料的store
   // const store = createStore(soezReducer)
   // console.log("BasicTablecolumnsstore", store)
- //檢查store
+  //檢查store
   // console.log("BasicTablecolumnsstoregetState", store.getState())
   //測試用加上去的，等等再把它拿掉：
   // window.store = store;
   // window.readsoezdata = readsoezdata;
-   
+
 
 
 
@@ -291,10 +299,12 @@ export const BasicTable = (props) => {
     canPreviousPage,
     canNextPage,
     prepareRow,
+    // preFilteredRows,
     pageOptions,
     setPageSize,
     gotoPage,
     pageCount,
+    preGlobalFilteredRows,
     state,
     // state,
     setGlobalFilter
@@ -302,6 +312,8 @@ export const BasicTable = (props) => {
 
     columns,
     data,
+    defaultColumn,
+
     initialState: { pageIndex: 0 }
   },
 
@@ -314,26 +326,54 @@ export const BasicTable = (props) => {
   const { globalFilter, pageIndex, pageSize } = state
   console.log("BasicTablecolumnsstate", state)
   return (
-    <>
-      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-
-      <div style={{ textAlign: "right", color: "red" }}>(點擊欄位可排序)</div>
+    <Styles>
+      <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows} filter={globalFilter} setFilter={setGlobalFilter} />
+      {console.log("123456789", preGlobalFilteredRows)}
+      <div>
+        <span style={{ textAlign: "left", color: "black", fontSize: "16px" }}>{preGlobalFilteredRows.length} 個 搜尋結果</span>
+        <div style={{ textAlign: "right", color: "red", fontSize: "16px" }}>(點擊欄位可排序)</div>
+      </div>
       {/* Render the UI for your table */}
-      <table {...getTableProps()}>
+      <table id="featuretable" className="featuretable" {...getTableProps()}>
         <thead>
+
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
+
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
+                  {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
+                  {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
                   {/* Add a sort direction indicator */}
+
                   <span>
+
                     {column.isSorted
                       ? column.isSortedDesc
                         ? ' 🔽'
                         : ' 🔼'
                       : ''}
                   </span>
+
+                </th>
+              ))}
+            </tr>
+          ))}
+
+
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+
+                <th {...column.getHeaderProps()}>
+                  <div>{column.canFilter ? column.render('Filter') : null}</div>
+
+                  {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
+                  {/* Add a sort direction indicator */}
+
+
+
                 </th>
               ))}
             </tr>
@@ -362,7 +402,7 @@ export const BasicTable = (props) => {
         </tfoot> */}
       </table>
       <br></br>
-      <span>
+      <span style={{ width: "100px", fontSize: "20px" }}>
         到第  {' '}
         <input
           type='number'
@@ -376,7 +416,7 @@ export const BasicTable = (props) => {
         />  頁
       </span>{' '}
 
-      <span>
+      <span style={{ width: "100px", fontSize: "20px" }}>
         <br></br>
         頁數: {' '}
         <strong >
@@ -389,11 +429,11 @@ export const BasicTable = (props) => {
           {'|<<'}
         </button>{' '}
         <span> &nbsp; </span>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+        <button onClick={() => previousPage()} disabled={!canPreviousPage} style={{ width: "100px", fontSize: "20px" }} >
           上一頁
         </button>{' '}
         <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
+        <button onClick={() => nextPage()} disabled={!canNextPage} style={{ width: "100px", fontSize: "20px" }}>
           下一頁
         </button>{' '}
         <span> &nbsp; </span>
@@ -402,10 +442,10 @@ export const BasicTable = (props) => {
         </button>{' '}
 
       </div>
-    </>
+    </Styles>
   )
 }
- 
+
 
 
 // const mapStateToProps = (state) => {

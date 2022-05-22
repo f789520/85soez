@@ -12,7 +12,7 @@ import { STORECOLUMNS } from './storecolumns'
 import { createStore } from "redux"
 import { async } from "@firebase/util";
 
-
+import './detail.css'
 
 
 
@@ -68,12 +68,89 @@ tbody{
  
 .littletitle{
   font-size : 20px;
-  font-weight: 600;
-  color:black
+  font-weight: 1000;
+  color:black;
+  color: #0364c6;
   }
 
 
-`;
+
+
+
+
+
+
+
+
+  @media (max-width: 700px) { 
+    #table1{ 
+      thead{
+
+        display: none;
+      }
+  
+      }
+
+   
+/* 
+.table ,.table >tbody ,.table >tr ,.table >td{
+display: block;
+width:10
+
+0%;
+} */
+#table1{
+  display: block;
+width:100%;
+tbody{
+
+  display: block;
+width:100%;
+
+}
+
+tr{
+  display: block;
+width:100%;
+}
+
+td{ 
+  display: block;
+width:100%;
+text-align: right;
+padding-left: 50%;
+position: relative;
+}
+
+tbody >tr  ::before{ 
+  display: block;
+width:100%;
+/* text-align: right; */
+padding-left: 15px;
+position: relative;
+font-weight:1000;
+color: #0364c6;
+font-size:20px;
+
+}
+tbody >tr  ::before{
+      content: attr(data-label);
+      text-align: left;
+      position: absolute;
+      left: 0;
+      width:50%;
+    }
+}
+
+ 
+.littletitle{
+  font-size : 17px;
+ 
+  }
+
+
+}
+`
 
 
 
@@ -121,11 +198,11 @@ export const DetailItem = (props) => {
 
           <div class="Detailtable">
             <div className="littletitle">
-              <div  id="ids">  &nbsp;&nbsp;&nbsp;   物件編號 ：  <span  > {testdata.ids} </span></div>
-              <div id="thisId">  &nbsp; &nbsp; 案號 ：    <span > {testdata.thisId} </span> </div>
-              <div id="thisId">  &nbsp; &nbsp; 人氣 ：    <span > {testdata.popular} </span> </div>
+              <div id="ids">&nbsp;&nbsp;物件編號 ： <span  > {testdata.ids} </span></div>
+              <div id="thisId">  &nbsp;  案號 ：    <span > {testdata.thisId} </span> </div>
+              <div id="thisId">  &nbsp;  人氣 ：    <span > {testdata.popular} </span> </div>
             </div>
-            <table id="table1" >
+            <table id="table1" className="table">
               <thead>
                 <tr id="title">
                   <th>拍次</th>
@@ -140,12 +217,12 @@ export const DetailItem = (props) => {
 
               <tbody>
                 <tr >
-                  <td><span data-th="拍次">{testdata.times}</span></td>
-                  <td><span data-th="投標時間">{testdata.date_th} <br/>{testdata.time_th}</span></td>
-                  <td><span data-th="開標結果">{testdata.result_price}</span></td>
-                  <td><span data-th="總底價">{testdata.house_total_lowprice}</span> </td>
-                  <td><span data-th="地坪">{testdata.lend_area}</span></td>
-                  <td><span data-th="保證金">{testdata.caution_money} 萬</span></td>
+                  <td><span data-label="拍次：">{testdata.times}</span></td>
+                  <td><span data-label="投標時間：">{testdata.date_th} <br />{testdata.time_th}</span></td>
+                  <td><span data-label="開標結果：">{testdata.result_price}</span></td>
+                  <td><span data-label="總底價：">{testdata.house_total_lowprice}</span> </td>
+                  <td><span data-label="地坪：">{testdata.lend_area}</span></td>
+                  <td><span data-label="保證金：">{testdata.caution_money} 萬</span></td>
 
                   {/* &nbsp; */}
                 </tr>
@@ -155,7 +232,7 @@ export const DetailItem = (props) => {
             <br />
             <table id="table2" >
               <tbody>
-              <tr>
+                <tr>
                   <td className="title">地區</td>
                   <td  ><div  >{testdata.city}</div></td>
                 </tr>
