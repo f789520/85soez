@@ -23,7 +23,7 @@ export const Contact = (props) => {
     console.log(name, email, message)
     emailjs
       .sendForm(
-        'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID'
+        'Gmail', 'template_aqfeq8q', e.target, 'lL7DcRFa3Dv1bXumS'
       )
       .then(
         (result) => {
@@ -33,7 +33,9 @@ export const Contact = (props) => {
         (error) => {
           console.log(error.text)
         }
+        
       )
+      e.target.reset()
   }
   return (
     <div>

@@ -104,7 +104,7 @@ export function ColumnFilterArea ({
 }
 
 
-export const LandNumberRangeColumnFilter = ({ column }) => {
+// export const LandNumberRangeColumnFilter = ({ column }) => {
 
 
     // const { filterValue = [], setFilter, preFilteredRows, id } = column
@@ -169,7 +169,7 @@ export const LandNumberRangeColumnFilter = ({ column }) => {
     //         />
     //     </div>
     // )
-}
+// }
 
 export const NumberRangeColumnFilter = ({ column }) => {
 

@@ -82,7 +82,7 @@ tbody{
 
 
 
-  @media (max-width: 700px) { 
+  @media (max-width: 760px) { 
     #table1{ 
       thead{
 

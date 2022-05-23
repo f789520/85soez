@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
-import {ColumnFilterTimes,ColumnFilterResult, ColumnFilter ,SliderColumnFilter,LandNumberRangeColumnFilter,NumberRangeColumnFilter,ColumnFilterArea } from './ColumnFilter'
+import {ColumnFilterTimes,ColumnFilterResult, ColumnFilter ,SliderColumnFilter,NumberRangeColumnFilter,ColumnFilterArea } from './ColumnFilter'
 
 
 export const STORECOLUMNS = [
@@ -63,7 +63,7 @@ export const STORECOLUMNS = [
         Footer: '地坪',
         accessor: 'lend_area',
         disableFilters:true,
-        Filter: LandNumberRangeColumnFilter,
+     
         // Cell: ({ cell: { value }, row: { original }   }) => <Link to={`detail/${original.id}`}>{value}{console.log("value",value) }{console.log("original",original.ids)} </Link>
     },  
     //   # 建坪
