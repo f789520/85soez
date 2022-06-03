@@ -47,7 +47,7 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 
 function Detail() {
   const tasks = useSelector((store) => store);
-  console.log("Detailtasks", tasks)
+  // console.log("Detailtasks", tasks)
 
   const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
@@ -56,7 +56,7 @@ function Detail() {
 
 
   const [searchParams] = useSearchParams();
-  console.log("searchParams", searchParams.get('ids')); // ▶ URLSearchParams {}
+  // console.log("searchParams", searchParams.get('ids')); // ▶ URLSearchParams {}
 
   return (
     <div>

@@ -87,47 +87,67 @@ export const STORECOLUMNS = [
 
 ]
 
-export const GROUPED_COLUMNS = [
+export const PROFILE_COLUMNS = [
+    //   thisId 案號
     {
-        Header: 'Id',
-        Footer: 'Id',
-        accessor: 'id'
+        Header: '案號',
+        Footer: '案號',
+        accessor: 'thisId',
+        Filter:ColumnFilter,
+        Cell: ({ cell: { value }, row: { original }  }) => <Link to={`../detail?ids=${original.ids}`}> {value}</Link>,
+        // disableFilters:true
     },
+    // 拍次
     {
-        Header: 'Name',
-        Footer: 'Name',
-        columns: [
-            {
-                Header: 'First Name',
-                Footer: 'First Name',
-                accessor: 'first_name'
-            },
-            {
-                Header: 'Last Name',
-                Footer: 'Last Name',
-                accessor: 'last_name'
-            }
-        ]
+        Header: '拍次',
+        Footer: '拍次',
+        accessor: 'times',
+        // disableFilters: true,
+        // sticky: 'left',
+        Filter: ColumnFilterTimes,
+       
     },
+    //   # 投標日期
     {
-        Header: 'Info',
-        Footer: 'Info',
-        columns: [
-            {
-                Header: 'Date of Birth',
-                Footer: 'Date of Birth',
-                accessor: 'date_of_birth'
-            },
-            {
-                Header: 'Country',
-                Footer: 'Country',
-                accessor: 'country'
-            },
-            {
-                Header: 'Phone',
-                Footer: 'Phone',
-                accessor: 'phone'
-            }
-        ]
-    }
+        Header: '投標日期',
+        Footer: '投標日期',
+        accessor: 'date_th',
+        // sticky: 'left',
+        Filter: ColumnFilter,
+    },
+
+    //   # 開標結果
+    {
+        Header: '開標結果',
+        Footer: '開標結果',
+        accessor: 'result_price',
+        sticky: 'left',
+        Filter: ColumnFilterResult,
+    },
+    //   # 地址
+    {
+        Header: '地址',
+        Footer: '地址',
+        accessor: 'address',
+        Filter: ColumnFilterArea,
+        Cell: ({ cell: { value }, row: { original }  }) => <Link to={`../detail?ids=${original.ids}`}> {value}</Link>
+    },
+  
+    //   # 總底價
+    {
+        Header: '總底價 (萬)',
+        Footer: '總底價',
+        accessor: 'house_total_lowprice',
+        Filter: NumberRangeColumnFilter,
+        filter: 'between',
+    },
+    //   # 地坪
+    {
+        Header: '地坪 (坪)',
+        Footer: '地坪',
+        accessor: 'lend_area',
+        disableFilters:true,
+     
+        // Cell: ({ cell: { value }, row: { original }   }) => <Link to={`detail/${original.id}`}>{value}{console.log("value",value) }{console.log("original",original.ids)} </Link>
+    },  
 ]

@@ -80,7 +80,7 @@ function  Home(props) {
     setLandingPageData(JsonData);
   }, []);
 
-  /* console.log("Homeprops", props); */
+  //  console.log("Homeprops", props); 
   /* const { mapStateToPropstodosbook } = props
   const firebaseData = useSelector((store) => store.firestoreReducer); */
 
@@ -114,10 +114,10 @@ export default Home;
 
 // 將FIREBASE資料庫傳到裡面
 // const mapStateToProps = (state) => { 
-//   /* console.log("mapStateToProps = (state) ",state  ) */
+//    console.log("mapStateToProps = (state) ",state  )  
 //   return {
-//     mapStateToPropssoez: state.firestoreReducer.ordered
+//     mapStateToPropssoez: state
 //   };
 // };
-// export default compose(firestoreConnect(['soez']), connect(mapStateToProps))(Home)
+// export default compose(firestoreConnect("soez"), connect(mapStateToProps))(Home)
 

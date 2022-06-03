@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useMemo } from 'react'
-import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce, usePagination } from 'react-table'
+import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce, usePagination, useRowSelect } from 'react-table'
 // import MOCK_DATA from '..data/MOCK_DATA'
 // import makeData from '..data/makeData'
 import soezdata from '../data/soezdata.json'
@@ -27,6 +27,7 @@ import {
 } from 'firebase/firestore'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Checkboxs } from './Checkbox'
 
 const Styles = styled.div`
 
@@ -241,10 +242,20 @@ export const Features = (props, state) => {
 // export default Apptest
 // ------------------------------------------------------
 
-export const BasicTable = (props) => {
+export const BasicTable = (props ) => {
+  console.log('props',props )
+  const [selectedRows, setSelectedRows] = useState([]);
+  function handleFav(e) {
+
+    // setFav(!fav)
+    console.log('1111111111111111111111111111111111111111111111111', e.target.value)
+
+  }
 
 
-  // const StoreData = props.storepropsdata.mapStateToPropssoez.soez
+
+
+ 
 
 
   const columns = useMemo(() => STORECOLUMNS, [])
@@ -257,9 +268,9 @@ export const BasicTable = (props) => {
     []
   )
 
-  console.log("BasicTablecolumns", columns)
-  console.log("BasicTablecolumnssoezdata", soezdata)
-  console.log("BasicTablecolumnsprops", props)
+  // console.log("BasicTablecolumns", columns)
+  // console.log("BasicTablecolumnssoezdata", soezdata)
+  // console.log("BasicTablecolumnsprops", props)
 
   //設定動作，雖然現在是空的
   // const readsoezdata = article => ({ type: 'readsoezdata', payload: article })
@@ -284,8 +295,11 @@ export const BasicTable = (props) => {
   // window.readsoezdata = readsoezdata;
 
 
-
-
+  // useEffect(() => {
+  //   console.log('11111111111111 ',selectedFlatRows)
+  //   const selected = selectedFlatRows.map( row  => row.original);
+  //   setSelectedRows(selected);
+  // }, [selectedFlatRows, setSelectedRows]);
   //要照這這個參數走
   const {
     getTableProps,
@@ -305,7 +319,8 @@ export const BasicTable = (props) => {
     gotoPage,
     pageCount,
     preGlobalFilteredRows,
-    state,
+    state ,
+    selectedFlatRows,
     // state,
     setGlobalFilter
   } = useTable({
@@ -320,21 +335,39 @@ export const BasicTable = (props) => {
     useFilters,
     useGlobalFilter,
     useSortBy,
-    usePagination)
+    usePagination,
+    useRowSelect,
+    //列表新增我的收藏
+    // hooks => {
+    //   hooks.visibleColumns.push(columns => [
+    //     {
+    //       id: 'selection',
+    //       Header: ({ getToggleAllRowsSelectedProps }) => (
+    //         <Checkboxs {...getToggleAllRowsSelectedProps()} />
+    //       ),
+    //       Cell: ({ row }) => <Checkboxs checked="true" onClick={(e) => handleFav} {...row.getToggleRowSelectedProps()} />
+    //     },
+    //     ...columns
+    //   ])
+    // }
+    )
+
+
+
 
 
   const { globalFilter, pageIndex, pageSize } = state
-  console.log("BasicTablecolumnsstate", state)
+  // console.log("BasicTablecolumnsstate", state)
   return (
-    <Styles>
+    <Styles >
       <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows} filter={globalFilter} setFilter={setGlobalFilter} />
-      {console.log("123456789", preGlobalFilteredRows)}
+      {/* {console.log("123456789", preGlobalFilteredRows)} */}
       <div>
         <span style={{ textAlign: "left", color: "black", fontSize: "16px" }}>{preGlobalFilteredRows.length} 個 搜尋結果</span>
         <div style={{ textAlign: "right", color: "red", fontSize: "16px" }}>(點擊欄位可排序)</div>
       </div>
       {/* Render the UI for your table */}
-      <table id="featuretable" className="featuretable" {...getTableProps()}>
+      <table id="featuretable" className="featuretable" {...getTableProps()} >
         <thead>
 
           {headerGroups.map(headerGroup => (
@@ -365,19 +398,16 @@ export const BasicTable = (props) => {
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-
                 <th {...column.getHeaderProps()}>
                   <div>{column.canFilter ? column.render('Filter') : null}</div>
-
                   {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
                   {/* Add a sort direction indicator */}
-
-
-
                 </th>
               ))}
             </tr>
           ))}
+
+
         </thead>
         <tbody {...getTableBodyProps()}>
           {page.map(row => {
@@ -442,6 +472,20 @@ export const BasicTable = (props) => {
         </button>{' '}
 
       </div>
+      {/* <pre>
+        <code>
+
+         
+          {JSON.stringify(
+            {
+              selectedFlatRows: selectedFlatRows.map(row => row.original)
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre> */}
+
     </Styles>
   )
 }

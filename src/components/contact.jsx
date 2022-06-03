@@ -50,7 +50,7 @@ export const Contact = (props) => {
                   有任何問題，請聯絡我們，會盡快為您服務 
                 </p>
               </div>
-              <form name='sentMessage' validate onSubmit={handleSubmit}>
+              <form name='sentMessage'  validate="true" onSubmit={handleSubmit}>
                 <div className='row'>
                   <div className='col-md-6'>
                     <div className='form-group'>

@@ -8,7 +8,7 @@ export const ColumnFilter = ({ column }) => {
 
 
     const { filterValue, setFilter, preFilteredRows } = column
-    console.log("column", column)
+    // console.log("column", column)
     return (
         <span>
             查詢:{' '}
@@ -180,7 +180,7 @@ export const NumberRangeColumnFilter = ({ column }) => {
         let min = preFilteredRows.length ? parseFloat(preFilteredRows[0].values[id]) : 0
         let max = preFilteredRows.length ? parseFloat(preFilteredRows[0].values[id]) : 0
 
-        console.log("letminmax", (min), max)
+        // console.log("letminmax", (min), max)
 
 
         preFilteredRows.forEach(row => {
@@ -195,7 +195,7 @@ export const NumberRangeColumnFilter = ({ column }) => {
 
     }, [id, preFilteredRows])
     // console.log("NumberRangeColumnFiltercolumn[min, max]" ,[min, max])
-    console.log("column", column)
+    // console.log("column", column)
 
     return (
         <div

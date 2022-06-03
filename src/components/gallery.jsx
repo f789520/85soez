@@ -34,7 +34,7 @@ export const Gallery = (props) => {
           <div className='section-title'>
             <h2>案例</h2>
             <p>
-            案例分享
+              案例
             </p>
           </div>
           <div className='row'>
