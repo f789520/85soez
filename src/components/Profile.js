@@ -205,9 +205,9 @@ export const Profile = (props) => {
     sendPasswordResetEmail(auth, auth.currentUser.email).then(function () {
       // Email sent.
 
-      console.log("更改密碼Email已發送");
-      alert('更改密碼Email已發送，請至信箱查看!!');
-
+      // console.log("更改密碼Email已發送");
+      // alert('更改密碼Email已發送，請至信箱查看!!');
+      handleClickOpenEmailConfirm()
     }, function (error) {
       // An error happened.
 
@@ -222,7 +222,8 @@ export const Profile = (props) => {
     updateProfile(auth.currentUser, {
       displayName: displayName
     }).then(() => {
-      alert('更改會員姓名成功!!');
+      // alert('更改會員姓名成功!!');
+      handleClickOpenName();
       // Profile updated!
       // ...
     }).catch((error) => {
@@ -249,7 +250,8 @@ export const Profile = (props) => {
     const user = auth.currentUser;
 
     deleteUser(user).then(function () {
-      alert('刪除成功帳號！');
+      // alert('刪除成功帳號！');
+      handleClickOpenDelete();
     }).catch(function (error) {
       alert('刪除帳號出現錯誤');
     });
@@ -267,8 +269,8 @@ export const Profile = (props) => {
   function handleClick() {
     upload(photo, currentUser, setLoading);
     // 
-    console.log("photo", photo)
-    console.log("currentUser", currentUser)
+    // console.log("photo", photo)
+    // console.log("currentUser", currentUser)
   }
 
 
@@ -290,7 +292,8 @@ export const Profile = (props) => {
     // });
     // });
     setLoading(false);
-    alert("Uploaded file!");
+    handleClickOpenImg();
+    // alert("Uploaded file!");
   }
   useEffect(() => {
     // console.log("currentUser", currentUser)
@@ -327,13 +330,38 @@ export const Profile = (props) => {
 
 
   const [openEmailConfirm, setOpenEmailConfirm] = React.useState(false);
-
   const handleClickOpenEmailConfirm = () => {
     setOpenEmailConfirm(true);
   };
-
   const handleCloseEmailConfirm = () => {
     setOpenEmailConfirm(false);
+  };
+
+
+  const [openImg, setOpenImg] = React.useState(false);
+  const handleClickOpenImg = () => {
+    setOpenImg(true);
+  };
+  const handleCloseImg = () => {
+    setOpenImg(false);
+  };
+
+
+  const [openName, setOpenName] = React.useState(false);
+  const handleClickOpenName = () => {
+    setOpenName(true);
+  };
+  const handleCloseName = () => {
+    setOpenName(false);
+  };
+
+
+  const [openDelete, setOpenDelete] = React.useState(false);
+  const handleClickOpenDelete = () => {
+    setOpenDelete(true);
+  };
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
   };
 
   return (
@@ -424,7 +452,7 @@ export const Profile = (props) => {
           {/* <Button  variant="outlined"  onClick={() => signOut(auth)}>登出</Button > */}
           <br />
 
-          <div style={{ display: "flex",justifyContent:" space-between" }}>
+          <div style={{ display: "flex", justifyContent: " space-between" }}>
             <Button variant="outlined" onClick={handleClickOpen}>刪除帳號</Button >
             {/* <Button variant="outlined"  onClick={() => triggerDeleteUser()}>刪除帳號</Button > */}
             <br />
@@ -447,14 +475,14 @@ export const Profile = (props) => {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>不刪除</Button>
-              <Button onClick={() =>  triggerDeleteUser()   } autoFocus>
+              <Button onClick={() => triggerDeleteUser()} autoFocus>
                 確認刪除帳號
               </Button>
             </DialogActions>
           </Dialog>
 
           <Dialog
-            open={open}
+            open={openEmailConfirm}
             onClose={handleCloseEmailConfirm}
             aria-labelledby="alert-dialog-title-EmailConfirm"
             aria-describedby="alert-dialog-description-EmailConfirm"
@@ -462,18 +490,60 @@ export const Profile = (props) => {
             <DialogTitle id="alert-dialog-title-EmailConfirm">
               {"發送修改密碼信件成功，請至信箱確認"}
             </DialogTitle>
-            <DialogContent>
+            {/* <DialogContent>
               <DialogContentText id="alert-dialog-description-EmailConfirm">
               請至信箱確認
               </DialogContentText>
-            </DialogContent>
+            </DialogContent> */}
             <DialogActions>
-              <Button onClick={handleClose}>確認</Button>
+              <Button onClick={handleCloseEmailConfirm}>確認</Button>
               {/* <Button onClick={() =>  triggerDeleteUser()   } autoFocus> */}
-                {/* 確認刪除帳號
+              {/* 確認刪除帳號
               </Button> */}
             </DialogActions>
           </Dialog>
+
+          <Dialog
+            open={openImg}
+            onClose={handleCloseImg}
+            aria-labelledby="alert-dialog-title-Img">
+            <DialogTitle id="alert-dialog-title-Img">
+              {"大頭貼上傳成功!!"}
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={handleCloseImg}>確認</Button>
+            </DialogActions>
+          </Dialog>
+
+
+          <Dialog
+            open={openName}
+            onClose={handleCloseName}
+            aria-labelledby="alert-dialog-title-Name">
+            <DialogTitle id="alert-dialog-title-Name">
+              {"會員姓名修改成功!!"}
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={handleCloseName}>確認</Button>
+            </DialogActions>
+          </Dialog>
+
+
+          <Dialog
+            open={openDelete}
+            onClose={handleCloseDelete}
+            aria-labelledby="alert-dialog-title-Delete">
+            <DialogTitle id="alert-dialog-title-Delete">
+              {"刪除會員成功!!"}
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={handleCloseDelete}>確認</Button>
+            </DialogActions>
+          </Dialog>
+
+
+
+
 
 
         </div>

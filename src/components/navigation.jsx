@@ -19,6 +19,12 @@ import { signOut } from 'firebase/auth'
 
 
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 export const Navigation = (props) => {
   const { currentUser } = useAuthValue()
@@ -34,6 +40,8 @@ export const Navigation = (props) => {
 
 
   // const currentUser = useAuth();
+ 
+
 
   return (
     <nav id='menu' className='navbar navbar-default navbar-fixed-top'>
@@ -98,7 +106,7 @@ export const Navigation = (props) => {
 
                 <li>
                   <a href='/profile' className='page-scroll'>
-                    <span onClick={() => signOut(auth)}>登出</span>
+                    <span onClick={() =>  signOut(auth) }>登出</span>
                   </a>
 
                 </li>
@@ -131,6 +139,8 @@ export const Navigation = (props) => {
             </li> */}
 
           </ul>
+
+       
         </div>
       </div>
     </nav>
