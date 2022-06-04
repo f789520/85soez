@@ -13,13 +13,13 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 const firebaseConfig = {
   // apiKey: process.env.REACT_APP_API_KEY,
-  apiKey: "AIzaSyDOdCjtIHsRu9gYoEBPz0E2N72nLUWzPa8",
-  authDomain:   "reacttodolist-6c3a7.firebaseapp.com",
-  projectId: "reacttodolist-6c3a7", //不能用env
-  storageBucket: "reacttodolist-6c3a7.appspot.com",
-  messagingSenderId: "855620430698",
-  appId: "1:855620430698:web:dc2d32b57abd2fb7c09313", //不能用en
-  measurementId: "G-K22RCEESST"
+  apiKey:"AIzaSyBFRknRxjE73VTK-j3F-BCBO0AZ3F2qXQ4",
+  authDomain:"soez-web.firebaseapp.com",
+  projectId: "soez-web", //不能用env
+  storageBucket:  "soez-web.appspot.com",
+  messagingSenderId: "1018811025124",
+  appId: "1:1018811025124:web:cd15f60a4d37d8ad8a4ef1", //不能用en
+  
 };
 
 // Initialize Firebase

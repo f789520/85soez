@@ -8,6 +8,21 @@ html {
   width: 100% !important;
   height: 100% !important;
 }
+
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+
+  font-size:2rem  !important;
+
+
+}
+
+.MuiInputBase-root {
+
+
+  font-size:2rem  !important;
+}
+
+
 h2,
 h3,
 h4 {

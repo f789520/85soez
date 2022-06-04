@@ -49,35 +49,6 @@ margin:100px auto;
 `
 
 
-const MapContainer = styled.div.attrs({ className: 'MapContainer' })`
-
-
- flex-direction: column;
-margin:10px auto;
-display: flex;
-
-.google-map-text{
-  margin:10px auto;
-
-}
-.google-map-code{
-  margin:10px auto;
-  position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 75%;
-  
-}
-
-
-.google-map-code iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-`
 
 const Styles = styled.div.attrs({ className: 'Styles' })` 
 
@@ -106,7 +77,7 @@ width:100%;
   font-weight:600;
   color:white;
   text-align:center;
-
+ 
 }
 th{ 
   padding: 16px 8px;
@@ -304,6 +275,9 @@ export const DetailItem = (props) => {
 
 
   const src = "https://www.google.com/maps?q=" + testdata.address + "&output=embed&z=14"
+
+  console.log("testdata.house_years", testdata.house_years !== "")
+  console.log("testdata.increase2", testdata.increase2 === "" ? null : testdata)
   return (
 
     <DetailContainer>
@@ -311,11 +285,14 @@ export const DetailItem = (props) => {
         <div>
 
           <div className="Detailtable">
-            <div className="littletitle">
+            <div style={{display:"grid",gridTemplateColumns:"3fr 50px"}}>
+              
+              <div className="littletitle">
+                <div id="ids">&nbsp;&nbsp;物件編號：<span  > {testdata.ids} </span></div>
+                <div id="thisId">  &nbsp;  案號：  <span > {testdata.thisId} </span> </div>
+                {testdata.popular === "" ? null : <div id="thisId">  &nbsp;  人氣：    <span > {testdata.popular} </span> </div>}
+              </div>
               <Checkbox checked={checked ? true : false} onChange={(e) => handleFav()} aria-label="fav" icon={<FavoriteBorder />} checkedIcon={<Favorite />} type='checkbox' />
-              <div id="ids">&nbsp;&nbsp;物件編號 ： <span  > {testdata.ids} </span></div>
-              <div id="thisId">  &nbsp;  案號 ：    <span > {testdata.thisId} </span> </div>
-              <div id="thisId">  &nbsp;  人氣 ：    <span > {testdata.popular} </span> </div>
             </div>
             <table id="table1" className="table">
               <thead>
@@ -325,7 +302,7 @@ export const DetailItem = (props) => {
                   <th>開標結果</th>
                   <th>總底價</th>
                   <th>地坪</th>
-                  <th>保證金</th>
+                  {testdata.caution_money === "" ? null : <th>保證金</th>}
                   {/* <th></th> */}
                 </tr>
               </thead>
@@ -337,7 +314,7 @@ export const DetailItem = (props) => {
                   <td><span data-label="開標結果：">{testdata.result_price}</span></td>
                   <td><span data-label="總底價：">{testdata.house_total_lowprice}</span> </td>
                   <td><span data-label="地坪：">{testdata.lend_area}</span></td>
-                  <td><span data-label="保證金：">{testdata.caution_money} 萬</span></td>
+                  {testdata.caution_money === "" ? null : <td><span data-label="保證金：">{testdata.caution_money} 萬</span></td>}
 
                   {/* &nbsp; */}
                 </tr>
@@ -351,76 +328,105 @@ export const DetailItem = (props) => {
                   <td className="title">地區</td>
                   <td  ><div  >{testdata.city}</div></td>
                 </tr>
-                <tr>
-                  <td className="title">主建物</td>
-                  <td  ><div  >{testdata.main_building}</div></td>
-                </tr>
-                <tr>
-                  <td className="title">建坪</td>
-                  <td  ><div  >{testdata.building_area}</div></td>
-                </tr>
-                <tr>
-                  <td className="title">公設比</td>
-                  <td  ><div  >{testdata.public_build_ratio}</div></td>
-                </tr>
-                <tr>
-                  <td className="title">房屋單價</td>
-                  <td  ><div  >{testdata.house_per_price}</div></td>
-                </tr>
-                <tr>
-                  <td className="title">屋齡</td>
-                  <td  ><div  >{testdata.house_years}</div></td>
-                </tr>
-                <tr>
-                  <td className="title">公告現值</td>
-                  <td  ><div  >{testdata.open_price} 元/㎡</div></td>
-                </tr>
-                <tr>
-                  <td className="title" id="addressTitle">地址</td>
-                  <td  ><div  >{testdata.address}</div></td>
-                </tr>
-                <tr>
-                  <td className="title" id="contentLandTitle">土地</td>
-                  <td id="contentLandTitletr"><div id="contentLand">{testdata.contentLand}</div></td>
-                </tr>
-                <tr>
-                  <td className="title" id="contentRecordTitle">查封筆錄</td>
-                  <td><div id="contentRecord">{testdata.contentRecord}</div></td>
-                </tr>
-                <tr>
-                  <td className="title" id="recordTitle">拍賣紀錄</td>
-                  <td><div id="record">{testdata.record}</div></td>
-                </tr>
-                <tr>
-                  <td className="title" id="otherTitle">其他資訊</td>
-                  <td><div id="other">{testdata.increase}</div></td>
-                </tr>
-                <tr>
-                  <td className="title"  >得標人查詢</td>
-                  <td><div id="other">{testdata.winner}</div></td>
-                </tr>
-                <tr>
-                  <td className="title"  >土地漲價總額</td>
-                  <td><div id="other">{testdata.increase2}</div></td>
-                </tr>
-                <tr>
-                  <td className="title"  >照片</td>
-                  <td><div id="other">{testdata.img_list}</div></td>
-                </tr>
+                {testdata.main_building === "" ? null :
+                  <tr>
+                    <td className="title">主建物</td>
+                    <td  ><div  >{testdata.main_building}</div></td>
+                  </tr>
+                }
+                {testdata.building_area === "" ? null :
+                  <tr>
+                    <td className="title">建坪</td>
+                    <td  ><div  >{testdata.building_area}</div></td>
+                  </tr>
+                }
+                {testdata.public_build_ratio === "" ? null :
+                  <tr>
+                    <td className="title">公設比</td>
+                    <td  ><div  >{testdata.public_build_ratio}</div></td>
+                  </tr>
+                }
+                {testdata.house_per_price === "" ? null :
+                  <tr>
+                    <td className="title">房屋單價</td>
+                    <td  ><div  >{testdata.house_per_price}</div></td>
+                  </tr>
+                }
+                {testdata.house_years === "" ? null :
+                  <tr>
+                    <td className="title">屋齡</td>
+                    <td  ><div  >{testdata.house_years}</div></td>
+                  </tr>
+                }
+                {testdata.open_price === "" ? null :
+                  <tr>
+                    <td className="title">公告現值</td>
+                    <td  ><div  >{testdata.open_price} 元/㎡</div></td>
+                  </tr>
+                }
+                {testdata.address === "" ? null :
+                  <tr>
+                    <td className="title" id="addressTitle">地址</td>
+                    <td  ><div  >{testdata.address}</div></td>
+                  </tr>
+                }
+                {testdata.contentLand === "" ? null :
+                  <tr>
+                    <td className="title" id="contentLandTitle">土地</td>
+                    <td id="contentLandTitletr"><div id="contentLand">{testdata.contentLand}</div></td>
+                  </tr>
+                }
+                {testdata.contentRecord === "" ? null :
+                  <tr>
+                    <td className="title" id="contentRecordTitle">查封筆錄</td>
+                    <td><div id="contentRecord">{testdata.contentRecord}</div></td>
+                  </tr>
+                }
+                {testdata.record === "" ? null :
+                  <tr>
+                    <td className="title" id="recordTitle">拍賣紀錄</td>
+                    <td><div id="record">{testdata.record}</div></td>
+                  </tr>
+                }
+                {testdata.increase === "" ? null :
+                  <tr>
+                    <td className="title" id="otherTitle">其他資訊</td>
+                    <td><div id="other">{testdata.increase}</div></td>
+                  </tr>
+                }
+                {testdata.winner === "" ? null :
+                  <tr>
+                    <td className="title"  >得標人查詢</td>
+                    <td><div id="other">{testdata.winner}</div></td>
+                  </tr>
+                }
+                {/* {testdata.increase === "" ? null :
+                  <tr>
+                    <td className="title"  >土地漲價總額</td>
+                    <td><div id="other">{testdata.increase}</div></td>
+                  </tr>
+                } */}
+                {testdata.img_list.length === 0 ? null :
+                  <tr >
+                    <td className="title"   >照片</td>
+                    <td><div id="other">{testdata.img_list}</div></td>
+                  </tr>
+                }
 
 
               </tbody>
             </table>
           </div>
+          <div className="MapContainer" >
+            <p className="google-map-text"　style={{fontSize:"20px" ,color:"black"}} >物件地址：{testdata.address}</p>
+            <div className="google-map-code">
+              <iframe title="google-map" src={src} frameBorder="0" style={{ border: 0 }} allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
+            </div>
+          </div>
         </div>
 
-        <MapContainer>
-          <p className="google-map-text" >{testdata.address}</p>
-          <div className="google-map-code">
-            <iframe title="google-map" src={src} frameBorder="0" style={{ border: 0 }} allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
-          </div>
 
-        </MapContainer>
+
 
 
       </Styles>

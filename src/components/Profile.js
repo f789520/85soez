@@ -17,7 +17,7 @@ import JsonData from "../data/data.json";
 import { EditText, EditTextarea } from 'react-edit-text'
 import EdiText from "react-editext";
 import './table.css'
-import { STORECOLUMNS,PROFILE_COLUMNS } from './storecolumns'
+import { STORECOLUMNS, PROFILE_COLUMNS } from './storecolumns'
 import { GlobalFilter } from './GlobalFilter'
 import { ColumnFilter } from './ColumnFilter'
 import soezdata from '../data/soezdata.json'
@@ -27,7 +27,7 @@ import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce, use
 import { Checkboxs } from './Checkbox'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { connect,useSelector } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { useFirestoreConnect } from 'react-redux-firebase'
 import {
   collection,
@@ -36,6 +36,36 @@ import {
   orderBy,
 } from 'firebase/firestore'
 import db from './fire'
+import TablePagination from '@mui/material/TablePagination';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+// import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+// import Select from '@mui/material/Select';
+import Select from '@material-ui/core/Select';
+import { width } from "@mui/system";
+
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+
+
+
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+
+
 
 
 const Styles = styled.div`
@@ -70,25 +100,79 @@ display: none;
 
 const Avatar = styled.img.attrs({ className: 'Avatar' })`
 vertical-align: middle;
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 150px;
   border-radius: 10%;
   border-width: 2px;
   border-color: gray;
   border-style: outset;
+  object-fit:cover;
 `;
 
+const StyledEdiText = styled(EdiText)`
+.styles-module_Editext__buttons_after_aligned__2ZHQz {
+  margin-left: 20px;
 
 
-export const Profile=(props)=> {
-  console.log("props",props);
+}
+.styles-module_Editext__button__sxYQX {
+  padding: 0em;
+}
+
+  button {
+    border-radius: 5px;
+  }
+  button[editext="edit-button"] {
+    color: #1976d2;
+    text-align:center;
+    width: 30px;
+    height: 20px;
+    border-radius:5px ;
+    &:hover {
+      background: beige;
+      
+    }
+  }
+  button[editext="save-button"] {
+    width: 50px;
+    height: 25px;
+    &:hover {
+      background: greenyellow;
+    }
+  }
+  button[editext="cancel-button"] {
+    height: 25px;
+    &:hover {
+      background: crimson;
+      
+      color: #fff;
+    }
+  }
+  input, textarea {
+    /* background: #1D2225; */
+    color: black;
+    /* font-weight: bold; */
+    border-radius: 5px;
+    height: 25px;
+    width: 150px;
+  }
+  div[editext="view-container"], div[editext="edit-container"] {
+    /* background: #6293C3; */
+    padding-left: 5px;
+    border-radius: 5px;
+    color: #777;
+}
+`
+
+export const Profile = (props) => {
+  console.log("props", props);
   const [editing, setEditing] = useState(false);
 
   useFirestoreConnect([
     { collection: 'soez' } // or 'todos'
   ])
-  const soez = useSelector((state) => state.firestore )
-  console.log("soez",soez);
+  const soez = useSelector((state) => state.firestore)
+  // console.log("soez", soez);
 
 
 
@@ -217,20 +301,40 @@ export const Profile=(props)=> {
   }, [currentUser])
 
 
-  const [favdata, setFavdata] = useState( );
+  const [favdata, setFavdata] = useState();
   // console.log("todosbook", todosbook);
   useEffect(() => {
     const collectionRef = collection(db, currentUser.uid);
     // const q = query(collectionRef, orderBy("timestamp", "desc"));
     const unsub = onSnapshot(collectionRef, (snapshot) =>
-    setFavdata(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
- 
+      setFavdata(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+
 
     );
     return unsub;
   }, []);
 
   // console.log("favdata", setFavdata)
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+  const [openEmailConfirm, setOpenEmailConfirm] = React.useState(false);
+
+  const handleClickOpenEmailConfirm = () => {
+    setOpenEmailConfirm(true);
+  };
+
+  const handleCloseEmailConfirm = () => {
+    setOpenEmailConfirm(false);
+  };
 
   return (
     <div>
@@ -241,37 +345,63 @@ export const Profile=(props)=> {
         <div className='profile'>
           <h1>會員資料</h1>
 
-          <div className="fields">
+          <div className="fields" style={{ position: "relative" }}>
 
             <Avatar src={photoURL} alt="Avatar" className="avatar" />
-            <input type="file" onChange={handleChange} />
-            <button disabled={loading || !photo} onClick={handleClick}>上傳大頭照</button>
+            <label htmlFor="contained-button-file" style={{ position: "absolute", bottom: "-20px" }}>
+              <input accept="image/*" onChange={handleChange} id="contained-button-file" multiple type="file" style={{ display: 'none' }} />
+              <IconButton color="primary" aria-label="upload picture" component="span">
+                <PhotoCamera />
+              </IconButton>
+            </label>
+
+            {/* <input  type="file" onChange={handleChange} /> */}
+
+
+
+
 
           </div>
+          <div style={{ height: "10px" }} ></div>
+          <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+            {/* <label htmlFor="contained-button-file">
+              <input accept="image/*" onChange={handleChange} id="contained-button-file" multiple type="file" style={{ display: 'none' }} />
+              <IconButton color="primary" aria-label="upload picture" component="span">
+                <PhotoCamera />
+              </IconButton>
+            </label> */}
 
+            <Button style={{ width: "100px" }} variant="contained" disabled={loading || !photo} onClick={handleClick}>上傳大頭照</Button>
+          </div>
+          <div style={{ height: "1px" }} ></div>
 
-
+          <hr style={{ opacity: "0.1", background: "black", width: "100%", height: "1px" }} />
           <p><strong>會員信箱: </strong>{currentUser?.email}</p>
           {/* <p>
             <strong>Email verified: </strong>
             {`${currentUser?.emailVerified}`}
           </p> */}
-          <p>
-            <strong>會員姓名: </strong>
+          <div style={{ height: "5px" }} ></div>
+          <p style={{ display: "flex", textAlign: "center" }} >
+            <strong >會員姓名: </strong>
+            <StyledEdiText
+              value={displayName}
+              type="text"
+              onSave={handleSave}
+              editing={editing}
+            // editButtonClassName="custom-edit-button"
+            // editButtonContent="Edit"
+
+            />
+
           </p>
-          <EdiText
-            value={displayName}
-            type="text"
-            onSave={handleSave}
-            editing={editing}
-          />
+          <div style={{ height: "5px" }} ></div>
 
-
-          <p>
+          {/* <p>
             <strong>會員電話: </strong>
             {currentUser?.phoneNumber !== null ? `${currentUser?.phoneNumber}` : ""}
 
-          </p>
+          </p> */}
           {/* 
           <p>
             <EdiText
@@ -286,24 +416,75 @@ export const Profile=(props)=> {
           </p> */}
 
           {/* <button onClick={() => setEditing((v) => !v)}>Toggle</button> */}
-          <div style={{ width: "50%", marginTop: 20 }}>
-            {/*  Apply your changes below */}
+          {/* <div style={{ width: "50%", marginTop: "15px" }}> */}
+          {/*  Apply your changes below */}
 
+          {/* </div> */}
+
+          {/* <Button  variant="outlined"  onClick={() => signOut(auth)}>登出</Button > */}
+          <br />
+
+          <div style={{ display: "flex",justifyContent:" space-between" }}>
+            <Button variant="outlined" onClick={handleClickOpen}>刪除帳號</Button >
+            {/* <Button variant="outlined"  onClick={() => triggerDeleteUser()}>刪除帳號</Button > */}
+            <br />
+            <Button variant="outlined" onClick={() => triggerChangeUserPassword()}>發送修改密碼信件</Button >
+            {/* <Button variant="outlined" onClick={handleClickOpenEmailConfirm}>發送修改密碼信件</Button > */}
           </div>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"真的要刪除帳號嗎?"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                注意!! 您正在刪除 85 SOEZ 會員帳號，刪除後您收藏的物件會不見喔~
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>不刪除</Button>
+              <Button onClick={() =>  triggerDeleteUser()   } autoFocus>
+                確認刪除帳號
+              </Button>
+            </DialogActions>
+          </Dialog>
 
-          <span onClick={() => signOut(auth)}>登出</span>
-          <br />
-          <span onClick={() => triggerDeleteUser()}>刪除帳號</span>
-          <br />
-          <span onClick={() => triggerChangeUserPassword()}>發送修改密碼信件</span>
-
-
+          <Dialog
+            open={open}
+            onClose={handleCloseEmailConfirm}
+            aria-labelledby="alert-dialog-title-EmailConfirm"
+            aria-describedby="alert-dialog-description-EmailConfirm"
+          >
+            <DialogTitle id="alert-dialog-title-EmailConfirm">
+              {"發送修改密碼信件成功，請至信箱確認"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description-EmailConfirm">
+              請至信箱確認
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>確認</Button>
+              {/* <Button onClick={() =>  triggerDeleteUser()   } autoFocus> */}
+                {/* 確認刪除帳號
+              </Button> */}
+            </DialogActions>
+          </Dialog>
 
 
         </div>
+        <div className='text-center'>
+          <div className='container'>
+            <FavTable favdata={favdata} currentUser={currentUser} />
+          </div>
+        </div>
       </div>
       {/* 將  Profile 的useEffect 得到的data 傳到FavTable  ，FavTable props 就可以得到資料  */}
-      <FavTable  favdata={favdata} currentUser={currentUser} />
+
       <Contact data={landingPageData.Contact} />
     </div>
   )
@@ -312,9 +493,9 @@ export const Profile=(props)=> {
 
 export const FavTable = (props) => {
   const { currentUser } = useAuthValue()
-  const [data, setFavdata] = useState(  [] );
-  console.log('FavTableprops' ,props.favdata)
-  console.log('soezdata' ,soezdata)
+  const [data, setFavdata] = useState([]);
+  console.log('FavTableprops', props.favdata)
+  console.log('soezdata', soezdata)
 
   // console.log('FavTableFavdata' ,Favdata)
   const [selectedRows, setSelectedRows] = useState([]);
@@ -325,21 +506,21 @@ export const FavTable = (props) => {
 
   }
 
- 
 
 
 
 
-useEffect(() => {
-  const collectionRef = collection(db, currentUser.uid);
-  // const q = query(collectionRef, orderBy("timestamp", "desc"));
-  const unsub = onSnapshot(collectionRef, (snapshot) =>
-  setFavdata(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+
+  useEffect(() => {
+    const collectionRef = collection(db, currentUser.uid);
+    // const q = query(collectionRef, orderBy("timestamp", "desc"));
+    const unsub = onSnapshot(collectionRef, (snapshot) =>
+      setFavdata(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
 
 
-  );
-  return unsub;
-}, []);
+    );
+    return unsub;
+  }, []);
   // const StoreData = props.storepropsdata.mapStateToPropssoez.soez
 
 
@@ -422,7 +603,7 @@ useEffect(() => {
     useSortBy,
     usePagination,
     useRowSelect,
-    )
+  )
 
 
 
@@ -466,7 +647,7 @@ useEffect(() => {
             </tr>
           ))}
 
- 
+
         </thead>
         <tbody {...getTableBodyProps()}>
           {page.map(row => {
@@ -491,47 +672,69 @@ useEffect(() => {
         </tfoot> */}
       </table>
       <br></br>
-      <span style={{ width: "100px", fontSize: "20px" }}>
-        到第  {' '}
-        <input
-          type='number'
-          defaultValue={pageIndex + 1}
-          onChange={e => {
-            const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
-            gotoPage(pageNumber)
-          }}
-          // eslint-disable-next-line no-undef
-          style={{ width: '50px', textAlign: "center" }}
-        />  頁
+      <span style={{ width: "100px", fontSize: "25px" }}>
+        {/* <input
+  type='number'
+  defaultValue={pageIndex + 1}
+  onChange={e => {
+    const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
+    gotoPage(pageNumber)
+  }}
+  // eslint-disable-next-line no-undef
+  style={{ width: '50px', textAlign: "center" }}
+/>  頁 */}
       </span>{' '}
-
+      <div style={{ height: "0px" }} ></div>
       <span style={{ width: "100px", fontSize: "20px" }}>
         <br></br>
-        頁數: {' '}
+        {' '}
         <strong >
           第 {' '} <span style={{ color: "red" }} >{pageIndex + 1} </span >頁 , 共  {pageOptions.length}  頁
         </strong>{' '}
       </span >
-      <div style={{ height: "5px" }} ></div>
-      <div>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'|<<'}
-        </button>{' '}
-        <span> &nbsp; </span>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage} style={{ width: "100px", fontSize: "20px" }} >
-          上一頁
-        </button>{' '}
-        <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        <button onClick={() => nextPage()} disabled={!canNextPage} style={{ width: "100px", fontSize: "20px" }}>
-          下一頁
-        </button>{' '}
-        <span> &nbsp; </span>
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>|'}
-        </button>{' '}
+      <div style={{ height: "10px" }} ></div>
+      <FormControl variant="outlined">
+        <Select style={{ height: "45px", width: "200px", fontSize: "20px", lineHeight: "25px", textAlign: "center" }}
+          value={pageSize}
+          onChange={e => setPageSize(Number(e.target.value))}
+          displayEmpty
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
 
+          <MenuItem style={{ fontSize: "20px" }} value={10}>顯示 10 個物件</MenuItem>
+          <MenuItem style={{ fontSize: "20px" }} value={25}>顯示 25 個物件</MenuItem>
+          <MenuItem style={{ fontSize: "20px" }} value={50}>顯示 50 個物件</MenuItem>
+        </Select>
+      </FormControl>
+      {/* <select
+value={pageSize}
+onChange={e => setPageSize(Number(e.target.value))}>
+{[10, 25, 50].map(pageSize => (
+  <option key={pageSize} value={pageSize}>
+    顯示 {pageSize} 個項目
+  </option>
+))}
+</select> */}
+      <div style={{ height: "20px" }} ></div>
+      <div>
+        <Button variant="contained" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'|＜＜'}
+        </Button>{' '}
+        <span> &nbsp; </span>
+        <Button variant="contained" onClick={() => previousPage()} disabled={!canPreviousPage} style={{ width: "100px", fontSize: "20px" }} >
+          上一頁
+        </Button>{' '}
+        <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        <Button variant="contained" onClick={() => nextPage()} disabled={!canNextPage} style={{ width: "100px", fontSize: "20px" }}>
+          下一頁
+        </Button>{' '}
+        <span> &nbsp; </span>
+        <Button variant="contained" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'＞＞|'}
+        </Button>{' '}
+        <div style={{ height: "5px" }} ></div>
       </div>
-       
+
     </Styles>
   )
 }

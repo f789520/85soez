@@ -24,6 +24,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { height } from '@mui/system';
 
 
 // export function createFav(user) {
@@ -129,7 +130,7 @@ export const Checkboxs = React.forwardRef(({ indeterminate, ...rest }, ref) => {
                 {checked ? 'Checked' : 'Not checked'}
             </p> */}
 
-            <Checkbox  aria-label="fav" onClick={(e)=>  handleFav } icon={<FavoriteBorder />} checkedIcon={<Favorite />} type='checkbox' ref={resolvedRef} {...rest} />
+            <Checkbox  aria-label="fav" onClick={(e)=>  handleFav }    icon={<FavoriteBorder    />}  checkedIcon={<Favorite      />} type='checkbox' ref={resolvedRef} {...rest} />
             {/* <Checkbox    aria-label="fav"  onChange={ handleFav } icon={<FavoriteBorder  />} checkedIcon={<Favorite />} type='checkbox' ref={resolvedRef} {...rest} /> */}
 
             {/* {!fav &&

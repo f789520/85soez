@@ -28,6 +28,42 @@ import {
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Checkboxs } from './Checkbox'
+import TablePagination from '@mui/material/TablePagination';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+// import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+// import Select from '@mui/material/Select';
+import Select from '@material-ui/core/Select';
+import { width } from "@mui/system";
+
+import TextField from '@mui/material/TextField';
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
+
+
+
+
+
+
 
 const Styles = styled.div`
 
@@ -95,11 +131,8 @@ const SearchList = styled.div.attrs({ className: 'SearchList' })`
 
 
 export const Features = (props, state) => {
-  console.log("Featuresprops", props)
-  console.log("Featuresstate", state)
-
-
-
+  // console.log("Featuresprops", props)
+  // console.log("Featuresstate", state)
 
 
 
@@ -124,126 +157,8 @@ export const Features = (props, state) => {
 }
 
 
-
-
-// function Table({ columns, data }, props) {
-//   // Use the state and functions returned from useTable to build your UI
-//   console.log("BTableTableTableTableTableasicTableprops", props)
-//   const {
-//     getTableProps,
-//     getTableBodyProps,
-//     headerGroups,
-//     rows,
-//     prepareRow,
-//   } = useTable({
-//     columns,
-//     data,
-//   },
-//     useSortBy
-
-//   )
-
-//   // We don't want to render all 2000 rows for this example, so cap
-//   // it at 20 for this use case
-//   const firstPageRows = rows.slice(0, 20)
-
-
-//   // Render the UI for your table
-//   return (
-//     <table {...getTableProps()}>
-//       <thead>
-//         {headerGroups.map(headerGroup => (
-//           <tr {...headerGroup.getHeaderGroupProps()}>
-//             {headerGroup.headers.map(column => (
-//               // Add the sorting props to control sorting. For this example
-//               // we can add them into the header props
-//               // <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-//               <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-//                 {column.render('Header')}
-//                 {/* Add a sort direction indicator */}
-//                 <span>
-//                   {column.isSorted
-//                     ? column.isSortedDesc
-//                       ? ' 🔽'
-//                       : ' 🔼'
-//                     : '(點擊排序)'}
-//                 </span>
-//               </th>
-
-//             ))}
-//           </tr>
-//         ))}
-//       </thead>
-//       <tbody {...getTableBodyProps()}>
-//         {rows.map((row, i) => {
-//           prepareRow(row)
-//           return (
-//             <tr {...row.getRowProps()}>
-//               {row.cells.map(cell => {
-//                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-//               })}
-//             </tr>
-//           )
-//         })}
-//       </tbody>
-
-//     </table>
-
-
-//   )
-// }
-
-// function Apptest(props) {
-
-//   console.log("Apptestprops", props);
-//   const columns = React.useMemo(
-//     () =>
-//       [
-//         {
-//           Header: '拍次',
-//           accessor: 'times',
-//         },
-//         {
-//           Header: '投標日期',
-//           accessor: 'date_th',
-//         },
-
-
-
-//         {
-//           Header: 'Age',
-//           accessor: 'age',
-//         },
-//         {
-//           Header: 'Visits',
-//           accessor: 'visits',
-//         },
-//         {
-//           Header: 'Status',
-//           accessor: 'status',
-//         },
-//         {
-//           Header: 'Profile Progress',
-//           accessor: 'progress',
-//         },
-
-//       ],
-//     []
-//   )
-
-//   const data = React.useMemo(() => makeData(20), [])
-
-//   return (
-//     <Styles>
-//       <Table columns={columns} data={data} storepropsdata={props.storepropsdata} />
-//     </Styles>
-//   )
-// }
-// export default Apptest
-// ------------------------------------------------------
-
-export const BasicTable = (props ) => {
-  console.log('props',props )
+export const BasicTable = (props) => {
+  console.log('props', props)
   const [selectedRows, setSelectedRows] = useState([]);
   function handleFav(e) {
 
@@ -251,12 +166,6 @@ export const BasicTable = (props ) => {
     console.log('1111111111111111111111111111111111111111111111111', e.target.value)
 
   }
-
-
-
-
- 
-
 
   const columns = useMemo(() => STORECOLUMNS, [])
   const data = useMemo(() => soezdata, [])
@@ -319,7 +228,7 @@ export const BasicTable = (props ) => {
     gotoPage,
     pageCount,
     preGlobalFilteredRows,
-    state ,
+    state,
     selectedFlatRows,
     // state,
     setGlobalFilter
@@ -350,7 +259,7 @@ export const BasicTable = (props ) => {
     //     ...columns
     //   ])
     // }
-    )
+  )
 
 
 
@@ -358,6 +267,7 @@ export const BasicTable = (props ) => {
 
   const { globalFilter, pageIndex, pageSize } = state
   // console.log("BasicTablecolumnsstate", state)
+
   return (
     <Styles >
       <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows} filter={globalFilter} setFilter={setGlobalFilter} />
@@ -432,44 +342,67 @@ export const BasicTable = (props ) => {
         </tfoot> */}
       </table>
       <br></br>
-      <span style={{ width: "100px", fontSize: "20px" }}>
-        到第  {' '}
-        <input
-          type='number'
+      {/* <span style={{ width: "100px", fontSize: "25px" }}>
+
+        <TextField id="outlined-basic" label="到第幾頁" variant="outlined" type='number'
           defaultValue={pageIndex + 1}
           onChange={e => {
             const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
             gotoPage(pageNumber)
-          }}
-          // eslint-disable-next-line no-undef
-          style={{ width: '50px', textAlign: "center" }}
-        />  頁
-      </span>{' '}
+          }} style={{ width: '90px', textAlign: "center", fontSize: "30px" ,height:"10px"}} />
 
+        
+      </span>{' '} */}
+      <div style={{ height: "0px" }} ></div>
       <span style={{ width: "100px", fontSize: "20px" }}>
         <br></br>
-        頁數: {' '}
+        {' '}
         <strong >
           第 {' '} <span style={{ color: "red" }} >{pageIndex + 1} </span >頁 , 共  {pageOptions.length}  頁
         </strong>{' '}
       </span >
-      <div style={{ height: "5px" }} ></div>
+      <div style={{ height: "10px" }} ></div>
+      <FormControl variant="outlined">
+        <Select style={{ height: "45px", width: "200px", fontSize: "20px", lineHeight: "25px", textAlign: "center" }}
+          value={pageSize}
+          onChange={e => setPageSize(Number(e.target.value))}
+          displayEmpty
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
+
+          <MenuItem style={{ fontSize: "20px" }} value={10}>顯示 10 個物件</MenuItem>
+          <MenuItem style={{ fontSize: "20px" }} value={25}>顯示 25 個物件</MenuItem>
+          <MenuItem style={{ fontSize: "20px" }} value={50}>顯示 50 個物件</MenuItem>
+        </Select>
+      </FormControl>
+      {/* <select
+        value={pageSize}
+        onChange={e => setPageSize(Number(e.target.value))}>
+        {[10, 25, 50].map(pageSize => (
+          <option key={pageSize} value={pageSize}>
+            顯示 {pageSize} 個項目
+          </option>
+        ))}
+      </select> */}
+      <div style={{ height: "20px" }} ></div>
       <div>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'|<<'}
-        </button>{' '}
+        <Button variant="contained" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'|＜＜'}
+        </Button>{' '}
         <span> &nbsp; </span>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage} style={{ width: "100px", fontSize: "20px" }} >
+        <Button variant="contained" onClick={() => previousPage()} disabled={!canPreviousPage} style={{ width: "100px", fontSize: "20px" }} >
           上一頁
-        </button>{' '}
+        </Button>{' '}
         <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-        <button onClick={() => nextPage()} disabled={!canNextPage} style={{ width: "100px", fontSize: "20px" }}>
+        <Button variant="contained" onClick={() => nextPage()} disabled={!canNextPage} style={{ width: "100px", fontSize: "20px" }}>
           下一頁
-        </button>{' '}
+        </Button>{' '}
         <span> &nbsp; </span>
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>|'}
-        </button>{' '}
+        <Button variant="contained" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'＞＞|'}
+        </Button>{' '}
+        <div style={{ height: "5px" }} ></div>
+
 
       </div>
       {/* <pre>

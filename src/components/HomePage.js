@@ -13,7 +13,7 @@ import { Team } from "./Team";
 import { Contact } from "./contact";
 import JsonData from "../data/data.json";
 import SmoothScroll from "smooth-scroll";
-import "./app.css"; 
+import "./app.css";
 import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
 // import MOCK_DATA from '..data/MOCK_DATA'
 // import makeData from '..data/makeData'
@@ -26,7 +26,7 @@ import Filter from "./Filter";
 import TaskItem from "./TaskItem";
 import { connect } from 'react-redux'
 import db from './fire'
- 
+
 import {
   collection,
   onSnapshot,
@@ -40,7 +40,7 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
   speedAsDuration: true,
 });
 
- 
+
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -73,7 +73,7 @@ function ListBtn() {
   );
 };
 
-function  Home(props) {
+function Home(props) {
 
   const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
@@ -89,13 +89,13 @@ function  Home(props) {
     <div>
       <div>
         <Navigation />
-    
+
         <Header data={landingPageData.Header} />
-      <hr style={{opacity:"0.1" ,background:"black" ,width: "100%",    height: "1px"}}/>
-       
+        <hr style={{ opacity: "0.1", background: "black", width: "100%", height: "1px" }} />
+
         {/* 將FIREBASE資料庫傳到裡面  <Features data={landingPageData.Features }  storepropsdata={props} /> */}
-        <Features data={landingPageData.Features }/> 
-        <br/>
+        <Features data={landingPageData.Features} />
+        <br />
         {/* <About data={landingPageData.About} /> */}
         {/* <Services data={landingPageData.Services} /> */}
         {/* <Gallery data={landingPageData.Gallery} /> */}
@@ -110,11 +110,11 @@ function  Home(props) {
 };
 
 
-export default Home; 
+export default Home;
 
 // 將FIREBASE資料庫傳到裡面
-// const mapStateToProps = (state) => { 
-//    console.log("mapStateToProps = (state) ",state  )  
+// const mapStateToProps = (state) => {
+//    console.log("mapStateToProps = (state) ",state  )
 //   return {
 //     mapStateToPropssoez: state
 //   };
