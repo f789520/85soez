@@ -50,14 +50,9 @@ import FormControl from '@material-ui/core/FormControl';
 // import Select from '@mui/material/Select';
 import Select from '@material-ui/core/Select';
 import { width } from "@mui/system";
-
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-
-
-
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -165,21 +160,19 @@ const StyledEdiText = styled(EdiText)`
 `
 
 export const Profile = (props) => {
-  console.log("props", props);
+  // console.log("props", props);
   const [editing, setEditing] = useState(false);
-
+  const soez = useSelector((state) => state.firestore)
   useFirestoreConnect([
     { collection: 'soez' } // or 'todos'
   ])
-  const soez = useSelector((state) => state.firestore)
+
   // console.log("soez", soez);
 
 
 
   const [landingPageData, setLandingPageData] = useState({});
-  useEffect(() => {
-    setLandingPageData(JsonData);
-  }, []);
+
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -198,7 +191,9 @@ export const Profile = (props) => {
   };
 
   // 刪除帳號
-
+  useEffect(() => {
+    setLandingPageData(JsonData);
+  }, []);
 
   function triggerChangeUserPassword() {
 
@@ -315,7 +310,7 @@ export const Profile = (props) => {
 
     );
     return unsub;
-  }, []);
+  }, [currentUser.uid]);
 
   // console.log("favdata", setFavdata)
   const [open, setOpen] = React.useState(false);
@@ -383,12 +378,7 @@ export const Profile = (props) => {
               </IconButton>
             </label>
 
-            {/* <input  type="file" onChange={handleChange} /> */}
-
-
-
-
-
+            {/* <input  type="file" onChange={handleChange} /> */} 
           </div>
           <div style={{ height: "10px" }} ></div>
           <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
@@ -405,12 +395,9 @@ export const Profile = (props) => {
 
           <hr style={{ opacity: "0.1", background: "black", width: "100%", height: "1px" }} />
           <p><strong>會員信箱: </strong>{currentUser?.email}</p>
-          {/* <p>
-            <strong>Email verified: </strong>
-            {`${currentUser?.emailVerified}`}
-          </p> */}
+
           <div style={{ height: "5px" }} ></div>
-          <p style={{ display: "flex", textAlign: "center" }} >
+          <div style={{ display: "flex", textAlign: "center" }} >
             <strong >會員姓名: </strong>
             <StyledEdiText
               value={displayName}
@@ -422,7 +409,7 @@ export const Profile = (props) => {
 
             />
 
-          </p>
+          </div>
           <div style={{ height: "5px" }} ></div>
 
           {/* <p>
@@ -563,22 +550,7 @@ export const Profile = (props) => {
 
 export const FavTable = (props) => {
   const { currentUser } = useAuthValue()
-  const [data, setFavdata] = useState([]);
-  console.log('FavTableprops', props.favdata)
-  console.log('soezdata', soezdata)
-
-  // console.log('FavTableFavdata' ,Favdata)
-  const [selectedRows, setSelectedRows] = useState([]);
-  function handleFav(e) {
-
-    // setFav(!fav)
-    console.log('1111111111111111111111111111111111111111111111111', e.target.value)
-
-  }
-
-
-
-
+  const [data, setFavdata] = useState([]); 
 
 
   useEffect(() => {
@@ -590,7 +562,7 @@ export const FavTable = (props) => {
 
     );
     return unsub;
-  }, []);
+  }, [currentUser.uid]);
   // const StoreData = props.storepropsdata.mapStateToPropssoez.soez
 
 

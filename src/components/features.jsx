@@ -340,8 +340,10 @@ export const BasicTable = (props) => {
             </tr>
           ))}
         </tfoot> */}
+
       </table>
       <br></br>
+ 
       {/* <span style={{ width: "100px", fontSize: "25px" }}>
 
         <TextField id="outlined-basic" label="到第幾頁" variant="outlined" type='number'

@@ -29,15 +29,14 @@ import JsonData from "../data/data.json";
 
 function Login() {
   const [landingPageData, setLandingPageData] = useState({});
-  useEffect(() => {
-    setLandingPageData(JsonData);
-  }, []);
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const { setTimeActive } = useAuthValue()
   const navigate = useNavigate()
+  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+
+
 
 
   // Configure FirebaseUI.
@@ -53,21 +52,25 @@ function Login() {
     callbacks: {
       // Avoid redirects after sign-in.
       signInSuccessWithAuthResult: () => false,
-      
+
     },
   };
-  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+
 
   // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
       setIsSignedIn(!!user);
-       
+
     });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
   }, []);
 
 
+
+  useEffect(() => {
+    setLandingPageData(JsonData);
+  }, []);
 
 
 
@@ -85,13 +88,6 @@ function Login() {
   //       console.log(error.message);
   //     });
   // };
-
-
-
-
-
-
-
 
 
   const login = e => {
@@ -115,11 +111,8 @@ function Login() {
   return (
     <div>
       <Navigation />
-
       <div className='center'>
-
         <div className='auth'>
-         
           <h1>會員登入</h1>
           {error && <div className='auth__error'>{error}</div>}
           <form onSubmit={login} name='login_form'>
@@ -129,36 +122,23 @@ function Login() {
               required
               placeholder="輸入電子信箱"
               onChange={e => setEmail(e.target.value)} />
-
             <input
               type='password'
               value={password}
               required
               placeholder='輸入密碼'
               onChange={e => setPassword(e.target.value)} />
-
-            <MDBBtn   type='submit'>登入</MDBBtn >
-
-
-     
-
+            <MDBBtn type='submit'>登入</MDBBtn >
           </form>
 
           {/* <button onClick={handleLoginFB}>使用facebook登入</button> */}
-         <br/>
-          <p>
-           
-          </p>
-          
-          點擊下方 Google 登入<StyledFirebaseAuth  uiConfig={uiConfig}  firebaseAuth={firebase.auth()}/>
-            
+          <br />
+          <p> </p>
+
+          點擊下方 Google 登入<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+
           {/* <StyledFirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={uiConfig} firebaseAuth={firebase.auth()} /> */}
-         
 
-
-
-
-          
           <p>
             還沒有帳號嗎? <span></span>
             <Link to='/register'>點擊這裡 註冊</Link>
