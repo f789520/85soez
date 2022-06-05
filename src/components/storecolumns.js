@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
-import {ColumnFilterTimes,ColumnFilterResult, ColumnFilter ,SliderColumnFilter,NumberRangeColumnFilter,ColumnFilterArea } from './ColumnFilter'
+import {ColumnFilterTimes,ColumnFilterResult, ColumnFilter ,SliderColumnFilter,NumberRangeColumnFilter,ColumnFilterArea,DateFilter } from './ColumnFilter'
 
 
 export const STORECOLUMNS = [
@@ -29,7 +29,7 @@ export const STORECOLUMNS = [
         Footer: '投標日期',
         accessor: 'date_th',
         // sticky: 'left',
-        Filter: ColumnFilter,
+        Filter: DateFilter,
     },
 
     //   # 開標結果
@@ -45,6 +45,9 @@ export const STORECOLUMNS = [
         Header: '地址',
         Footer: '地址',
         accessor: 'address',
+        maxWidth: 400,
+        minWidth: 140,
+        width: 60,
         Filter: ColumnFilterArea,
         Cell: ({ cell: { value }, row: { original }  }) => <Link to={`detail?ids=${original.ids}`}> {value}</Link>
     },

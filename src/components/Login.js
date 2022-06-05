@@ -36,10 +36,7 @@ function Login() {
   const navigate = useNavigate()
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
 
-
-
-
-  // Configure FirebaseUI.
+ 
   const uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
@@ -52,27 +49,19 @@ function Login() {
     callbacks: {
       // Avoid redirects after sign-in.
       signInSuccessWithAuthResult: () => false,
-
     },
   };
-
-
-  // Listen to the Firebase Auth state and set the local state.
+ 
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
-      setIsSignedIn(!!user);
-
+      setIsSignedIn(!!user); 
     });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
-  }, []);
-
-
+  }, []); 
 
   useEffect(() => {
     setLandingPageData(JsonData);
   }, []);
-
-
 
   // const handleLoginFB = () => {
   //   const provider = new FacebookAuthProvider();
@@ -130,15 +119,11 @@ function Login() {
               onChange={e => setPassword(e.target.value)} />
             <MDBBtn type='submit'>登入</MDBBtn >
           </form>
-
           {/* <button onClick={handleLoginFB}>使用facebook登入</button> */}
           <br />
           <p> </p>
-
-          點擊下方 Google 登入<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-
-          {/* <StyledFirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={uiConfig} firebaseAuth={firebase.auth()} /> */}
-
+          點擊下方 Google 登入
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
           <p>
             還沒有帳號嗎? <span></span>
             <Link to='/register'>點擊這裡 註冊</Link>

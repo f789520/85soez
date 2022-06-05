@@ -9,6 +9,15 @@ html {
   height: 100% !important;
 }
 
+.MuiOutlinedInput-input {
+  padding: 10px 20px !important ; 
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  line-height:1em  !important;
+  font-size: 2rem  !important;
+}
+
 .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
 
   font-size:2rem  !important;

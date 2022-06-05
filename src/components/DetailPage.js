@@ -18,7 +18,7 @@ import "./app.css";
 import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
 // import MOCK_DATA from '..data/MOCK_DATA'
 // import makeData from '..data/makeData'
-import { COLUMNS } from './columns'
+ 
 import './table.css'
 import axios from 'axios';
 import { useSelector } from "react-redux";

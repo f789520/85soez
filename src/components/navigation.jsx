@@ -1,46 +1,18 @@
 import './app.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Profile from './Profile'
-import Register from './Register'
-import VerifyEmail from './VerifyEmail';
-import Login from './Login'
-import { useRef, useState, useEffect } from 'react'
-// import { AuthProvider } from './AuthContext'
+import React, {   useState, useEffect ,useContext } from 'react'
 import { auth } from './fire'
-import { onAuthStateChanged } from 'firebase/auth'
-import PrivateRoute from './PrivateRoute'
-import { Navigate } from 'react-router-dom'
-import React, { useContext } from "react";
-import { signup, login, logout, useAuth } from "./fire"; 
-import { useAuthValue } from './App'
-import { signOut } from 'firebase/auth' 
-import { AuthContext, LoadingContext } from "./AuthContext"; 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
-import Loading from "./Loading";
+import { onAuthStateChanged,signOut } from 'firebase/auth' 
+import {  LoadingContext } from "./AuthContext"; 
+import Loading from "./Loading"; 
 
-
-
-export const Navigation = (props) => {
-  // const { currentUser } = useAuthValue()
+export const Navigation = () => { 
   const { isLoadingGetMe } = useContext(LoadingContext);
   const [currentUser, setCurrentUser] = useState(null)
-  // const [timeActive, setTimeActive] = useState(false)
-  // const { isLoading, setIsLoading } = useContext(LoadingContext);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user)
     })
   }, [])
-
-
-  // const currentUser = useAuth();
-
-
 
   return (
     <nav id='menu' className='navbar navbar-default navbar-fixed-top'>
@@ -62,7 +34,7 @@ export const Navigation = (props) => {
             85 SOEZ
           </a>{' '}
         </div>
-       
+
         <div
           className='collapse navbar-collapse'
           id='bs-example-navbar-collapse-1'
@@ -94,58 +66,35 @@ export const Navigation = (props) => {
               </a>
             </li>
 
-
             {isLoadingGetMe ? (
-              <Loading/>
+              <Loading />
             ) : (
               <>
                 {currentUser &&
                   <>
-                    <li>
-
+                    <li> 
                       <a href='/profile' className='page-scroll'>
                         會員中心
-                      </a>
-
-                    </li>
-
+                      </a> 
+                    </li> 
                     <li>
                       <a href='/profile' className='page-scroll'>
                         <span onClick={() => signOut(auth)}>登出</span>
-                      </a>
-
+                      </a> 
                     </li>
                   </>
-                }
-
-                {!currentUser &&
-
+                } 
+                {!currentUser && 
                   <>
                     <li>
                       <a href='/login' className='page-scroll'>
                         登入
-                      </a>
-
-                    </li>
-
+                      </a> 
+                    </li> 
                   </>
-                }
-
-              </>)}
-            {/* <li>
-              <a href='#testimonials' className='page-scroll'>
-                客戶回饋?
-              </a>
-            </li> */}
-            {/* <li>
-              <a href='#team' className='page-scroll'>
-                團隊介紹
-              </a>
-            </li> */}
-
-          </ul>
-
-
+                } 
+              </>)} 
+          </ul> 
         </div>
       </div>
     </nav>

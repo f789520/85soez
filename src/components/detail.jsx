@@ -7,7 +7,7 @@ import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce, use
 // import MOCK_DATA from '..data/MOCK_DATA'
 // import makeData from '..data/makeData'
 import soezdata from '../data/soezdata.json'
-import { COLUMNS } from './columns'
+ 
 import { STORECOLUMNS } from './storecolumns'
 import { createStore } from "redux"
 import { async } from "@firebase/util";
@@ -37,6 +37,13 @@ import {
   FacebookAuthProvider, getAuth, sendPasswordResetEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile
 } from "firebase/auth";
 import { useAuthValue } from './AuthContext'
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 
 
@@ -215,9 +222,7 @@ export const DetailItem = (props) => {
     setChecked(!checked);
     const user = currentUser.uid;
     // setFav(!fav)
-    console.log('1111111111111111111111111111111111111111111111111', !checked)
-    console.log('user', user)
-    console.log('testdata', testdata)
+ 
     const ids = testdata.ids
     console.log('ids', ids)
     if (!checked === true) {
@@ -237,16 +242,7 @@ export const DetailItem = (props) => {
   }
 
   function createFav(user, ids) {
-    console.log('user', user)
-    console.log('createFavids', ids)
-    console.log('testdata', testdata)
-    // return addDoc(collection(db, "favs", user), {
-
-    //   timestamp: serverTimestamp(),
-    //   testdata
-    //   // website: url
-    // }
-
+   
 
     setDoc(doc(db, user, ids), {
 
@@ -255,7 +251,7 @@ export const DetailItem = (props) => {
       // website: url
     }
 
-    ).then(alert("新增成功"), console.log("新增成功"))
+    ).then(handleClickOpenFav())
       .catch(function (error) {
         console.error("Error adding Tutorial: ", error);
       });;
@@ -265,19 +261,35 @@ export const DetailItem = (props) => {
     // var dt = firestore.collection('favs').where('website','==',website).where('user','==',user);
     return deleteDoc(doc(db, user, ids)
     ).then(
-      alert("刪除成功"), console.log("刪除成功 ")
+      handleClickOpenFavdel( ) 
     )
       .catch(function (error) {
-        console.error("Error adding Tutorial: ", error);
+        console.error("Error adding   ", error);
       });;
 
   }
 
+  const [openFav, setOpenFav] = React.useState(false);
+  const handleClickOpenFav = () => {
+    setOpenFav(true);
+  };
+  const handleCloseFav = () => {
+    setOpenFav(false);
+  };
 
+
+  
+  const [openFavdel, setOpenFavdel] = React.useState(false);
+  const handleClickOpenFavdel = () => {
+    setOpenFavdel(true);
+  };
+  const handleCloseFavdel = () => {
+    setOpenFavdel(false);
+  };
   const src = "https://www.google.com/maps?q=" + testdata.address + "&output=embed&z=14"
 
-  console.log("testdata.house_years", testdata.house_years !== "")
-  console.log("testdata.increase2", testdata.increase2 === "" ? null : testdata)
+  // console.log("testdata.house_years", testdata.house_years !== "")
+  // console.log("testdata.increase2", testdata.increase2 === "" ? null : testdata)
   return (
 
     <DetailContainer>
@@ -285,8 +297,8 @@ export const DetailItem = (props) => {
         <div>
 
           <div className="Detailtable">
-            <div style={{display:"grid",gridTemplateColumns:"3fr 50px"}}>
-              
+            <div style={{ display: "grid", gridTemplateColumns: "3fr 50px" }}>
+
               <div className="littletitle">
                 <div id="ids">&nbsp;&nbsp;物件編號：<span  > {testdata.ids} </span></div>
                 <div id="thisId">  &nbsp;  案號：  <span > {testdata.thisId} </span> </div>
@@ -416,9 +428,33 @@ export const DetailItem = (props) => {
 
               </tbody>
             </table>
+            <Dialog
+              open={openFav}
+              onClose={handleCloseFav}
+              aria-labelledby="alert-dialog-title-Fav">
+              <DialogTitle style={{fontSize:"20px"}} id="alert-dialog-title-Fav">
+                {"新增到我的收藏成功!!"}
+              </DialogTitle>
+              <DialogActions>
+                <Button onClick={handleCloseFav} style={{fontSize:"20px"}}>確認</Button>
+              </DialogActions>
+            </Dialog>
+
+            <Dialog
+              open={openFavdel}
+              onClose={handleCloseFavdel}
+              aria-labelledby="alert-dialog-title-Favdel">
+              <DialogTitle  style={{fontSize:"20px"}} id="alert-dialog-title-Favdel">
+                {"從我的收藏取消成功!!"}
+              </DialogTitle>
+              <DialogActions>
+                <Button  style={{fontSize:"20px"}} onClick={handleCloseFavdel}>確認</Button>
+              </DialogActions>
+            </Dialog>
+
           </div>
           <div className="MapContainer" >
-            <p className="google-map-text"　style={{fontSize:"20px" ,color:"black"}} >物件地址：{testdata.address}</p>
+            <p className="google-map-text" style={{ fontSize: "20px", color: "black" }} >物件地址：{testdata.address}</p>
             <div className="google-map-code">
               <iframe title="google-map" src={src} frameBorder="0" style={{ border: 0 }} allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
             </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAsyncDebounce } from 'react-table'
 import styled from "styled-components";
-
+import TextField from '@mui/material/TextField';
 
 const FilterButton = styled.button.attrs({ className: 'FilterButton' })`
      
@@ -23,10 +23,10 @@ const InputSearch = styled.input.attrs({ className: 'InputSearch' })`
         color: #757575;
         height: 56px;
         padding-left: 15px;
-        border-radius: 5px 0px 0px 5px;
+        border-radius: 5px 5px 5px 5px;
         /* filter: drop-shadow(0px 0px 20px #AABBCC); */
         display: flex;
-        border:;
+       
         background: #FFFFFF;
 
         font-style: #757575;
@@ -73,9 +73,10 @@ export const GlobalFilter = ({ filter, setFilter,preGlobalFilteredRows }) => {
               
             </Areaselect> */}
 
-            <InputSearch
+            <TextField variant="outlined" id="outlined-basic" label="請輸入關鍵字查詢物件..."
+            style={{ width:"90%"  }}
                 value={value || ''}
-                placeholder=  {`  請輸入關鍵字查詢物件...`}
+                // placeholder=  {`  請輸入關鍵字查詢物件...`}
                 onChange={e => {
                     // if(value!=""){
 
