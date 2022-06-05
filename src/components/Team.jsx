@@ -6,8 +6,7 @@ export const Team = (props) => {
           <h2>團隊介紹</h2>
           <p>暢銷書作者、各大版面媒體、廣播報導介紹</p>
         </div>
-        <div id="row">
-          {console.log("Team", props)}
+        <div id="row"> 
           {props.data
             ? props.data.map((d, i) => (
                 <div key={`${d.name}-${i}`} className="col-md-3 col-sm-6 team">

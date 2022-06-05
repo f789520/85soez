@@ -140,8 +140,7 @@ export const BasicTable = () => {
         filter={globalFilter}
         setFilter={setGlobalFilter}
       />
-      <FilterContainer>
-        {console.log("headerGroups", headerGroups)}
+      <FilterContainer> 
         {headerGroups.map((headerGroup) => (
           <div
             style={{

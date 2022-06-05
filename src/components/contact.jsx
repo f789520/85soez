@@ -15,13 +15,12 @@ export const Contact = (props) => {
   };
   const clearState = () => setState({ ...initialState });
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(name, email, message);
+    e.preventDefault(); 
     emailjs
       .sendForm("Gmail", "template_aqfeq8q", e.target, "lL7DcRFa3Dv1bXumS")
       .then(
         (result) => {
-          console.log(result.text);
+          // console.log(result.text);
           clearState();
         },
         (error) => {

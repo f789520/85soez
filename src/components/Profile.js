@@ -169,8 +169,7 @@ export const Profile = () => {
 
   useFirestoreConnect([{ collection: "soez" }]);
 
-  const handleSave = (displayName) => {
-    console.log(displayName);
+  const handleSave = (displayName) => { 
     setDisplayName(displayName);
     triggerUpdateUser(displayName);
   };
@@ -182,7 +181,7 @@ export const Profile = () => {
       },
       function (error) {
         // An error happened.
-        console.error("更改密碼", error);
+        // console.error("更改密碼", error);
         alert("更改密碼Email發送失敗");
       }
     );

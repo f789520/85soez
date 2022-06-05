@@ -22,7 +22,6 @@ export const Gallery = (props) => {
           </div>
           <div className="row">
             <div className="portfolio-items">
-              {console.log("Gallerypropsdata", props.data)}
               {props.data
                 ? props.data.map((d, i) => (
                     <div
