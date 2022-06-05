@@ -19,7 +19,6 @@ table td {
   width: 100px;
 }
 
-
 table tr:nth-child(even) {
   background-color: #f8f7f7;
 }
@@ -36,9 +35,7 @@ table th, tfoot td {
   color: white;
 }
 
-
 .MapContainer {
-
   flex-direction: column;
   margin: 10px auto;
   display: flex;
@@ -49,22 +46,17 @@ table th, tfoot td {
 
 .google-map-text {
   margin: 10px auto;
-
 }
 
 .google-map-code {
- 
   margin: 10px auto;
   position: relative;
   width: 100%;
   height: 0;
   padding-bottom: 75%;
-
 }
 
-
 .google-map-code iframe {
-  
   position: absolute;
   top: 0;
   left: 0;
@@ -72,10 +64,6 @@ table th, tfoot td {
   height: 100%;
 }
 
- 
- 
 .MuiSvgIcon-root {
-    font-size: 40px !important;
+  font-size: 40px !important;
 }
-
- 

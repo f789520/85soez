@@ -5,21 +5,22 @@
   text-align: center;
   padding: 40px 20px;
   background-color: hsl(210, 10%, 98%);
+  margin: 100px auto;
 }
 
-.verifyEmail h1{
+.verifyEmail h1 {
   font-weight: 300;
   margin-top: 0;
 }
 
-.verifyEmail > p{
+.verifyEmail>p {
   line-height: 25px;
 }
 
-.verifyEmail > span{
+.verifyEmail>span {
   color: gray;
 }
 
-.verifyEmail > button {
+.verifyEmail>button {
   margin-top: 35px;
 }
