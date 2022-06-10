@@ -7,6 +7,7 @@ import JsonData from "../data/data.json";
 import "./app.css";
 
 export const Gallery = (props) => {
+  window.scrollTo(0, 0);
   const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
     setLandingPageData(JsonData);

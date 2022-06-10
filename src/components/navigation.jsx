@@ -4,6 +4,7 @@ import { auth } from "./fire";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { LoadingContext } from "./AuthContext";
 import Loading from "./Loading";
+import { Link } from "react-router-dom"; 
 
 export const Navigation = () => {
   const { isLoadingGetMe } = useContext(LoadingContext);
@@ -30,9 +31,8 @@ export const Navigation = () => {
             <span className="icon-bar"></span>{" "}
             <span className="icon-bar"></span>{" "}
           </button>
-          <a className="navbar-brand page-scroll" href="/">
-            85 SOEZ
-          </a>{" "}
+          <Link  to='/' className="navbar-brand page-scroll" >85 SOEZ</Link>
+ 
         </div>
         <div
           className="collapse navbar-collapse"
@@ -40,24 +40,23 @@ export const Navigation = () => {
         >
           <ul className="nav navbar-nav navbar-right">
             <li>
-              <a href="/" className="page-scroll" style={{}}>
-                首頁/物件查詢
-              </a>
+            <Link  to='/' className="page-scroll">首頁/物件查詢</Link>
+              
             </li>
             <li>
-              <a href="/about" className="page-scroll">
+              <Link to="/about" className="page-scroll">
                 關於我們
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/services" className="page-scroll">
+              <Link to="/services" className="page-scroll">
                 代標服務
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/portfolio" className="page-scroll">
+              <Link to="/portfolio" className="page-scroll">
                 案例
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#contact" className="page-scroll">
@@ -71,23 +70,23 @@ export const Navigation = () => {
                 {currentUser && (
                   <>
                     <li>
-                      <a href="/profile" className="page-scroll">
+                      <Link to="/profile" className="page-scroll">
                         會員中心
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="/profile" className="page-scroll">
+                      <Link to="/profile" className="page-scroll">
                         <span onClick={() => signOut(auth)}>登出</span>
-                      </a>
+                      </Link>
                     </li>
                   </>
                 )}
                 {!currentUser && (
                   <>
                     <li>
-                      <a href="/login" className="page-scroll">
+                      <Link to="/login" className="page-scroll">
                         登入
-                      </a>
+                      </Link>
                     </li>
                   </>
                 )}

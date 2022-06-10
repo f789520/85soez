@@ -67,3 +67,22 @@ table th, tfoot td {
 .MuiSvgIcon-root {
   font-size: 40px !important;
 }
+
+/* @media (min-width:768px) and (max-width:1200px) {
+  .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root {
+    position: fixed;
+    right: 0px;
+  }
+
+} */
+/* .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root{
+
+  position: fixed;
+}
+
+#fav{
+  position: fixed;
+}
+.MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root{
+  position: fixed;
+} */

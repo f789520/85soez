@@ -203,6 +203,7 @@ export function ColumnFilterTimes({
   );
 }
 
+
 export function ColumnFilterResult({
   column: { filterValue, setFilter, preFilteredRows, id },
 }) {
@@ -254,6 +255,75 @@ export function ColumnFilterResult({
           value=""
         >
           所有結果
+        </option>
+        {options.map((option, i) => (
+          <option key={i} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </span>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+export function ColumnFilterTimess({
+  column: { filterValue, setFilter, preFilteredRows, id },
+}) {
+  const options = React.useMemo(() => { const options = new Set(); preFilteredRows.forEach((row) => {
+      options.add(row.values[id]);
+    });
+    return [...options.values()];
+  }, [id, preFilteredRows]);
+  return (
+    <span
+      style={{
+        display: "flex",
+        fontSize: "20px",
+        lineHeight: "50px",
+        color: "black",
+      }}
+    >
+      查詢拍次：{" "}
+      <select
+        style={{
+          color: "black",
+          width: "150px",
+          font: "inherit",
+          border: "0.1",
+          height: "2em",
+          margin: "0",
+          display: "block",
+          padding: "6px",
+          borderRadius: "4px",
+          borderColor: "rgb(196, 196, 196)",
+          background: "none",
+          boxSizing: "content-box",
+          letterSpacing: "inherit",
+          animationDuration: "10ms",
+          borderWidth: "0.5px",
+          fontSize: "16px",
+        }}
+        value={filterValue}
+        onChange={(e) => {
+          setFilter(e.target.value || undefined);
+        }}
+      >
+        <option
+          style={{
+            color: "black",
+          }}
+          value=""
+        >
+          所有拍次
         </option>
         {options.map((option, i) => (
           <option key={i} value={option}>

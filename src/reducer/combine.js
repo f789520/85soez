@@ -1,14 +1,10 @@
 import { combineReducers } from 'redux';
-import filterReducer from './filter.js';
-import todosReducer from './todos.js';
-import Features from '../components/features';
-
+ 
 import {firestoreReducer} from "redux-firestore"
 
 const todoApp = combineReducers({
     
-    filterReducer,
-    todosReducer:todosReducer,
+    
     firestoreReducer:firestoreReducer,//連上了!!!!
     
 

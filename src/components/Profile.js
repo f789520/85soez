@@ -155,6 +155,7 @@ const StyledEdiText = styled(EdiText)`
 `;
 
 export const Profile = () => {
+  window.scrollTo(0, 0);
   const [editing, setEditing] = useState(false);
   const [landingPageData, setLandingPageData] = useState({});
   const auth = getAuth();

@@ -183,9 +183,6 @@ export const BasicTable = () => {
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps(
-                    {
-                      style: { minWidth: column.minWidth, width: column.width },
-                    },
                     column.getSortByToggleProps()
                   )}
                 >

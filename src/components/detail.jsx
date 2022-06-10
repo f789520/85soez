@@ -13,6 +13,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
+import { Link, useNavigate } from "react-router-dom";
 
 const DetailContainer = styled.div.attrs({ className: "DetailContainer" })`
   margin: 100px auto;
@@ -120,12 +121,13 @@ const AddressMap = () => {
 export { AddressMap };
 
 export const DetailItem = (props) => {
-  window.scrollTo(0, 0) //進來頁面時到頂端
+  window.scrollTo(0, 0); //進來頁面時到頂端
   const { currentUser } = useAuthValue();
   const [searchParams] = useSearchParams();
   const urlids = searchParams.get("ids");
   const data = useMemo(() => soezdata, []);
   const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
 
   let testdata;
   data.forEach((detaildata) => {
@@ -133,23 +135,28 @@ export const DetailItem = (props) => {
       testdata = detaildata;
     }
   });
-
+console.log("testdata",testdata)
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
   }, [searchParams]);
 
   function handleFav() {
-    setChecked(!checked);
-    const user = currentUser.uid;
-    const ids = testdata.ids;
-    if (!checked === true) {
-      createFav(user, ids);
-      // save ID to localstorage? but this will fail if they come back
+    if (currentUser === null) {
+      console.log("currentUser", currentUser === null);
+      navigate("/login");
     } else {
-      console.log("delete me?");
-      deleteFav(user, ids);
-      // or delete it from firestore
-      // delete it where
+      setChecked(!checked);
+      const user = currentUser.uid;
+      const ids = testdata.ids;
+      if (!checked === true) {
+        createFav(user, ids);
+        // save ID to localstorage? but this will fail if they come back
+      } else {
+        console.log("delete me?");
+        deleteFav(user, ids);
+        // or delete it from firestore
+        // delete it where
+      }
     }
   }
 
@@ -190,262 +197,269 @@ export const DetailItem = (props) => {
     "https://www.google.com/maps?q=" + testdata.address + "&output=embed&z=14";
 
   return (
-    <DetailContainer>
-      <Styles>
-        <div>
-          <div className="Detailtable">
-            <div style={{ display: "grid", gridTemplateColumns: "3fr 50px" }}>
-              <div className="littletitle">
-                <div id="ids">
-                  &nbsp;&nbsp;物件編號：<span> {testdata.ids} </span>
-                </div>
-                <div id="thisId">
-                  {" "}
-                  &nbsp; 案號： <span> {testdata.thisId} </span>{" "}
-                </div>
-                {testdata.popular === "" ? null : (
+    <div className="container">
+      <DetailContainer style={{whiteSpace: "pre-line"}}> 
+      {/* style={{whiteSpace: "pre-line"}} 保留 html 的空白符號 */ }
+        <Styles >
+          <div>
+            <div className="Detailtable">
+              <div style={{ display: "grid", gridTemplateColumns: "3fr 50px" }}>
+                <div className="littletitle">
+                  <div id="ids">
+                    &nbsp;&nbsp;物件編號：<span> {testdata.ids} </span>
+                  </div>
                   <div id="thisId">
                     {" "}
-                    &nbsp; 人氣： <span> {testdata.popular} </span>{" "}
+                    &nbsp; 案號： <span> {testdata.thisId} </span>{" "}
                   </div>
-                )}
+                  {testdata.popular === "" ? null : (
+                    <div id="thisId">
+                      {" "}
+                      &nbsp; 人氣： <span> {testdata.popular} </span>{" "}
+                    </div>
+                  )}
+                </div>
+                <Checkbox
+                  id="fav"
+                  checked={checked ? true : false}
+                  onChange={(e) => handleFav()}
+                  aria-label="fav"
+                  icon={<FavoriteBorder />}
+                  checkedIcon={<Favorite />}
+                  type="checkbox"
+                  // style={{ position: "fixed" }}
+                />
               </div>
-              <Checkbox
-                checked={checked ? true : false}
-                onChange={(e) => handleFav()}
-                aria-label="fav"
-                icon={<FavoriteBorder />}
-                checkedIcon={<Favorite />}
-                type="checkbox"
-              />
-            </div>
-            <table id="table1" className="table">
-              <thead>
-                <tr id="title">
-                  <th>拍次</th>
-                  <th>投標時間</th>
-                  <th>開標結果</th>
-                  <th>總底價</th>
-                  <th>地坪</th>
-                  {testdata.caution_money === "" ? null : <th>保證金</th>}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <span data-label="拍次：">{testdata.times}</span>
-                  </td>
-                  <td>
-                    <span data-label="投標時間：">
-                      {testdata.date_th} <br />
-                      {testdata.time_th}
-                    </span>
-                  </td>
-                  <td>
-                    <span data-label="開標結果：">{testdata.result_price}</span>
-                  </td>
-                  <td>
-                    <span data-label="總底價：">
-                      {testdata.house_total_lowprice}
-                    </span>{" "}
-                  </td>
-                  <td>
-                    <span data-label="地坪：">{testdata.lend_area}</span>
-                  </td>
-                  {testdata.caution_money === "" ? null : (
+              <table id="table1" className="table">
+                <thead>
+                  <tr id="title">
+                    <th>拍次</th>
+                    <th>投標時間</th>
+                    <th>開標結果</th>
+                    <th>總底價</th>
+                    <th>地坪</th>
+                    {testdata.caution_money === "" ? null : <th>保證金</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
                     <td>
-                      <span data-label="保證金：">
-                        {testdata.caution_money} 萬
+                      <span data-label="拍次：">{testdata.times}</span>
+                    </td>
+                    <td>
+                      <span data-label="投標時間：">
+                        {testdata.date_th} <br />
+                        {testdata.time_th}
                       </span>
                     </td>
+                    <td>
+                      <span data-label="開標結果：">
+                        {testdata.result_price}
+                      </span>
+                    </td>
+                    <td>
+                      <span data-label="總底價：">
+                        {testdata.house_total_lowprice}
+                      </span>{" "}
+                    </td>
+                    <td>
+                      <span data-label="地坪：">{testdata.lend_area}</span>
+                    </td>
+                    {testdata.caution_money === "" ? null : (
+                      <td>
+                        <span data-label="保證金：">
+                          {testdata.caution_money} 萬
+                        </span>
+                      </td>
+                    )}
+                  </tr>
+                </tbody>
+              </table>
+              <br />
+              <table id="table2">
+                <tbody>
+                  <tr>
+                    <td className="title">地區</td>
+                    <td>
+                      <div>{testdata.city}</div>
+                    </td>
+                  </tr>
+                  {testdata.main_building === "" ? null : (
+                    <tr>
+                      <td className="title">主建物</td>
+                      <td>
+                        <div>{testdata.main_building}</div>
+                      </td>
+                    </tr>
                   )}
-                </tr>
-              </tbody>
-            </table>
-            <br />
-            <table id="table2">
-              <tbody>
-                <tr>
-                  <td className="title">地區</td>
-                  <td>
-                    <div>{testdata.city}</div>
-                  </td>
-                </tr>
-                {testdata.main_building === "" ? null : (
-                  <tr>
-                    <td className="title">主建物</td>
-                    <td>
-                      <div>{testdata.main_building}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.building_area === "" ? null : (
-                  <tr>
-                    <td className="title">建坪</td>
-                    <td>
-                      <div>{testdata.building_area}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.public_build_ratio === "" ? null : (
-                  <tr>
-                    <td className="title">公設比</td>
-                    <td>
-                      <div>{testdata.public_build_ratio}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.house_per_price === "" ? null : (
-                  <tr>
-                    <td className="title">房屋單價</td>
-                    <td>
-                      <div>{testdata.house_per_price}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.house_years === "" ? null : (
-                  <tr>
-                    <td className="title">屋齡</td>
-                    <td>
-                      <div>{testdata.house_years}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.open_price === "" ? null : (
-                  <tr>
-                    <td className="title">公告現值</td>
-                    <td>
-                      <div>{testdata.open_price} 元/㎡</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.address === "" ? null : (
-                  <tr>
-                    <td className="title" id="addressTitle">
-                      地址
-                    </td>
-                    <td>
-                      <div>{testdata.address}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.contentLand === "" ? null : (
-                  <tr>
-                    <td className="title" id="contentLandTitle">
-                      土地
-                    </td>
-                    <td id="contentLandTitletr">
-                      <div id="contentLand">{testdata.contentLand}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.contentRecord === "" ? null : (
-                  <tr>
-                    <td className="title" id="contentRecordTitle">
-                      查封筆錄
-                    </td>
-                    <td>
-                      <div id="contentRecord">{testdata.contentRecord}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.record === "" ? null : (
-                  <tr>
-                    <td className="title" id="recordTitle">
-                      拍賣紀錄
-                    </td>
-                    <td>
-                      <div id="record">{testdata.record}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.increase === "" ? null : (
-                  <tr>
-                    <td className="title" id="otherTitle">
-                      其他資訊
-                    </td>
-                    <td>
-                      <div id="other">{testdata.increase}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.winner === "" ? null : (
-                  <tr>
-                    <td className="title">得標人查詢</td>
-                    <td>
-                      <div id="other">{testdata.winner}</div>
-                    </td>
-                  </tr>
-                )}
-                {testdata.img_list.length === 0 ? null : (
-                  <tr>
-                    <td className="title">照片</td>
-                    <td>
-                      <div id="other">{testdata.img_list}</div>
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-            <Dialog
-              open={openFav}
-              onClose={handleCloseFav}
-              aria-labelledby="alert-dialog-title-Fav"
-            >
-              <DialogTitle
-                style={{ fontSize: "20px" }}
-                id="alert-dialog-title-Fav"
+                  {testdata.building_area === "" ? null : (
+                    <tr>
+                      <td className="title">建坪</td>
+                      <td>
+                        <div>{testdata.building_area}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.public_build_ratio === "" ? null : (
+                    <tr>
+                      <td className="title">公設比</td>
+                      <td>
+                        <div>{testdata.public_build_ratio}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.house_per_price === "" ? null : (
+                    <tr>
+                      <td className="title">房屋單價</td>
+                      <td>
+                        <div>{testdata.house_per_price}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.house_years === "" ? null : (
+                    <tr>
+                      <td className="title">屋齡</td>
+                      <td>
+                        <div>{testdata.house_years}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.open_price === "" ? null : (
+                    <tr>
+                      <td className="title">公告現值</td>
+                      <td>
+                        <div>{testdata.open_price} 元/㎡</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.address === "" ? null : (
+                    <tr>
+                      <td className="title" id="addressTitle">
+                        地址
+                      </td>
+                      <td>
+                        <div>{testdata.address}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.contentLand === "" ? null : (
+                    <tr>
+                      <td className="title" id="contentLandTitle">
+                        土地
+                      </td>
+                      <td id="contentLandTitletr">
+                        <div id="contentLand">{testdata.contentLand}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.contentRecord === "" ? null : (
+                    <tr>
+                      <td className="title" id="contentRecordTitle">
+                        查封筆錄
+                      </td>
+                      <td>
+                        <div id="contentRecord">{testdata.contentRecord}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.record === "" ? null : (
+                    <tr>
+                      <td className="title" id="recordTitle">
+                        拍賣紀錄
+                      </td>
+                      <td>
+                        <div id="record" >{testdata.record}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.increase === "" ? null : (
+                    <tr>
+                      <td className="title" id="otherTitle">
+                        其他資訊
+                      </td>
+                      <td>
+                        <div id="other">{testdata.increase}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {testdata.winner === "" ? null : (
+                    <tr>
+                      <td className="title">得標人查詢</td>
+                      <td>
+                        <div id="other">{testdata.winner}</div>
+                      </td>
+                    </tr>
+                  )}
+                  {/* {testdata.img_list.length === 0 ? null : (
+                    <tr>
+                      <td className="title">照片</td>
+                      <td>
+                        <div id="other">{testdata.img_list}</div>
+                      </td>
+                    </tr>
+                  )} */}
+                </tbody>
+              </table>
+              <Dialog
+                open={openFav}
+                onClose={handleCloseFav}
+                aria-labelledby="alert-dialog-title-Fav"
               >
-                {"新增到我的收藏成功!!"}
-              </DialogTitle>
-              <DialogActions>
-                <Button onClick={handleCloseFav} style={{ fontSize: "20px" }}>
-                  確認
-                </Button>
-              </DialogActions>
-            </Dialog>
-            <Dialog
-              open={openFavdel}
-              onClose={handleCloseFavdel}
-              aria-labelledby="alert-dialog-title-Favdel"
-            >
-              <DialogTitle
-                style={{ fontSize: "20px" }}
-                id="alert-dialog-title-Favdel"
-              >
-                {"從我的收藏取消成功!!"}
-              </DialogTitle>
-              <DialogActions>
-                <Button
+                <DialogTitle
                   style={{ fontSize: "20px" }}
-                  onClick={handleCloseFavdel}
+                  id="alert-dialog-title-Fav"
                 >
-                  確認
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-          <div className="MapContainer">
-            <p
-              className="google-map-text"
-              style={{ fontSize: "20px", color: "black" }}
-            >
-              物件地址：{testdata.address}
-            </p>
-            <div className="google-map-code">
-              <iframe
-                title="google-map"
-                src={src}
-                frameBorder="0"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                aria-hidden="false"
-                tabIndex="0"
-              ></iframe>
+                  {"新增到我的收藏成功!!"}
+                </DialogTitle>
+                <DialogActions>
+                  <Button onClick={handleCloseFav} style={{ fontSize: "20px" }}>
+                    確認
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              <Dialog
+                open={openFavdel}
+                onClose={handleCloseFavdel}
+                aria-labelledby="alert-dialog-title-Favdel"
+              >
+                <DialogTitle
+                  style={{ fontSize: "20px" }}
+                  id="alert-dialog-title-Favdel"
+                >
+                  {"從我的收藏取消成功!!"}
+                </DialogTitle>
+                <DialogActions>
+                  <Button
+                    style={{ fontSize: "20px" }}
+                    onClick={handleCloseFavdel}
+                  >
+                    確認
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </div>
+            <div className="MapContainer">
+              <p
+                className="google-map-text"
+                style={{ fontSize: "20px", color: "black" }}
+              >
+                物件地址：{testdata.address}
+              </p>
+              <div className="google-map-code">
+                <iframe
+                  title="google-map"
+                  src={src}
+                  frameBorder="0"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  aria-hidden="false"
+                  tabIndex="0"
+                ></iframe>
+              </div>
             </div>
           </div>
-        </div>
-      </Styles>
-    </DetailContainer>
+        </Styles>
+      </DetailContainer>
+    </div>
   );
 };
