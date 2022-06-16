@@ -97,15 +97,17 @@ function Login() {
             <input
               type="email"
               value={email}
+              // value="f789520@hotmail.com"
               required
-              placeholder="輸入電子信箱"
+              placeholder="f789520@hotmail.com"
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               value={password}
+              // value="123123"
               required
-              placeholder="輸入密碼"
+              placeholder="123123"
               onChange={(e) => setPassword(e.target.value)}
             />
             <MDBBtn type="submit">登入</MDBBtn>

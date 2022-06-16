@@ -126,7 +126,6 @@ export const DetailItem = (props) => {
   const [searchParams] = useSearchParams();
   const urlids = searchParams.get("ids");
   const data = useMemo(() => soezdata, []);
-  const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
 
   let testdata;
@@ -135,11 +134,13 @@ export const DetailItem = (props) => {
       testdata = detaildata;
     }
   });
-console.log("testdata",testdata)
+
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
   }, [searchParams]);
 
+  const [checked, setChecked] = useState(false);
+  
   function handleFav() {
     if (currentUser === null) {
       console.log("currentUser", currentUser === null);
@@ -198,9 +199,9 @@ console.log("testdata",testdata)
 
   return (
     <div className="container">
-      <DetailContainer style={{whiteSpace: "pre-line"}}> 
-      {/* style={{whiteSpace: "pre-line"}} 保留 html 的空白符號 */ }
-        <Styles >
+      <DetailContainer style={{ whiteSpace: "pre-line" }}>
+        {/* style={{whiteSpace: "pre-line"}} 保留 html 的空白符號 */}
+        <Styles>
           <div>
             <div className="Detailtable">
               <div style={{ display: "grid", gridTemplateColumns: "3fr 50px" }}>
@@ -248,8 +249,7 @@ console.log("testdata",testdata)
                     </td>
                     <td>
                       <span data-label="投標時間：">
-                        {testdata.date_th} <br />
-                        {testdata.time_th}
+                        {testdata.date_th} －{testdata.time_th}
                       </span>
                     </td>
                     <td>
@@ -348,7 +348,9 @@ console.log("testdata",testdata)
                         土地
                       </td>
                       <td id="contentLandTitletr">
-                        <div id="contentLand">{testdata.contentLand}</div>
+                        <div id="contentLand" style={{ lineHeight: "32px" }}>
+                          {testdata.contentLand}
+                        </div>
                       </td>
                     </tr>
                   )}
@@ -358,7 +360,9 @@ console.log("testdata",testdata)
                         查封筆錄
                       </td>
                       <td>
-                        <div id="contentRecord">{testdata.contentRecord}</div>
+                        <div id="contentRecord" style={{ lineHeight: "32px" }}>
+                          {testdata.contentRecord}
+                        </div>
                       </td>
                     </tr>
                   )}
@@ -368,7 +372,9 @@ console.log("testdata",testdata)
                         拍賣紀錄
                       </td>
                       <td>
-                        <div id="record" >{testdata.record}</div>
+                        <div id="record" style={{ lineHeight: "32px" }}>
+                          {testdata.record}
+                        </div>
                       </td>
                     </tr>
                   )}
@@ -378,7 +384,9 @@ console.log("testdata",testdata)
                         其他資訊
                       </td>
                       <td>
-                        <div id="other">{testdata.increase}</div>
+                        <div id="other" style={{ lineHeight: "32px" }}>
+                          {testdata.increase}
+                        </div>
                       </td>
                     </tr>
                   )}
@@ -445,6 +453,7 @@ console.log("testdata",testdata)
               >
                 物件地址：{testdata.address}
               </p>
+
               <div className="google-map-code">
                 <iframe
                   title="google-map"

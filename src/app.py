@@ -48,11 +48,11 @@ headers = {
   'sec-ch-ua-mobile': '?0',
   'sec-ch-ua-platform': '"Windows"'
 }
-for pg in range(1, 2):
+for pg in range(1, 3): #爬蟲自動印幾頁
     try:
 
         url = "https://www.104woo.com.tw/Search/Index?1=1&pg=" + \
-            str(pg)+"&ps=10&sc=4,1"
+            str(pg)+"&ps=100&sc=4,1"
         response = requests.request("GET", url, headers=headers, data=payload)
         # print(response.text) #印成TEXT
         # with open('891test.html', 'w+', encoding='utf-8') as f:
@@ -72,18 +72,18 @@ for pg in range(1, 2):
                 # print(Soup.find_all('input'))
                 # print(x)
                 ids = x.get('ids')
-                print("ids", ids)  # 得到搜尋網址中的 ids 有我要的搜尋網址參數  eg:SCD_51829
+                # print("ids", ids)  # 得到搜尋網址中的 ids 有我要的搜尋網址參數  eg:SCD_51829
                 if ids == None:  # 如果沒有ids (ids=None) 跳下一個迴圈
                     continue
                 # 如果有ids資料就拆參數
                 # print(type(x.get('ids')))
                 # print(x.get('ids').split("_"))  #得到搜尋網址中的 c & no 拆開
                 # bs4 官網 https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/
-                print(x.get('ids').split("_")[0])  # 得到搜尋網址中的 參數 c
+                # print(x.get('ids').split("_")[0])  # 得到搜尋網址中的 參數 c
                 arg_c = x.get('ids').split("_")[0]
-                print(x.get('ids').split("_")[1])  # 得到搜尋網址中的 參數 no
+                # print(x.get('ids').split("_")[1])  # 得到搜尋網址中的 參數 no
                 arg_no = x.get('ids').split("_")[1]
-                print("arg_c", arg_c)
+                # print("arg_c", arg_c)
 
                 # 先看看單一個的等等回來處理迴圈
                 detail_url = "https://www.104woo.com.tw/Detail/Index?c=" + \
@@ -128,8 +128,8 @@ for pg in range(1, 2):
                 # print("section_top_right.contents[6]",section_top_right.contents[6])
                 # print("section_top_right.contents[7]",section_top_right.contents[7])
                 # print("section_top_right.contents[8]",section_top_right.contents[8])
-                print("section_top_right.contents9]",
-                    section_top_right.contents[9].contents[0].string)  # 公設比
+                # print("section_top_right.contents9]",
+                #     section_top_right.contents[9].contents[0].string)  # 公設比
                 public_build_ratio = section_top_right.contents[9].contents[0].string
             except Exception:
                 public_build_ratio = ""
@@ -137,8 +137,8 @@ for pg in range(1, 2):
                 pass
 
             try:
-                print("section_top_right.contents[11]",
-                    section_top_right.contents[11].string)  # 主建物
+                # print("section_top_right.contents[11]",
+                #     section_top_right.contents[11].string)  # 主建物
                 main_building = section_top_right.contents[11].string
             except Exception:
                 main_building = ""
@@ -146,8 +146,8 @@ for pg in range(1, 2):
                 pass
 
             try:
-                print("section_top_right.contents[13]",
-                    section_top_right.contents[13].contents[0])  # 總坪數
+                # print("section_top_right.contents[13]",
+                #     section_top_right.contents[13].contents[0])  # 總坪數
                 total_area = section_top_right.contents[13].contents[0]
             except Exception:
                 total_area = ""
@@ -167,8 +167,8 @@ for pg in range(1, 2):
 
             try:
                 # 法院
-                print(
-                    "section_top_left.contents[1]", section_top_left.contents[1].contents[0].strip())
+                # print(
+                #     "section_top_left.contents[1]", section_top_left.contents[1].contents[0].strip())
                 court = section_top_left.contents[1].contents[0].strip()
             except Exception:
                 court = ""
@@ -177,8 +177,8 @@ for pg in range(1, 2):
 
             try:
                 # 人氣數量
-                print(
-                    "section_top_left.contents[1]", section_top_left.contents[1].contents[5].contents[1].string)
+                # print(
+                #     "section_top_left.contents[1]", section_top_left.contents[1].contents[5].contents[1].string)
                 popular = section_top_left.contents[1].contents[5].contents[1].string
             except Exception:
                 popular = ""
@@ -187,8 +187,8 @@ for pg in range(1, 2):
 
             try:
                 # 地址 高雄市新興區林森一路252號14樓<14>
-                print(
-                    "section_top_left.contents[3]", section_top_left.contents[3].contents[1])
+                # print(
+                #     "section_top_left.contents[3]", section_top_left.contents[3].contents[1])
                 address = section_top_left.contents[3].contents[1]
             except Exception:
                 address = ""
@@ -197,8 +197,8 @@ for pg in range(1, 2):
 
             try:
                 # thisId 110逸116965
-                print(
-                    "section_top_left.contents[5]", section_top_left.contents[5].get("value"))
+                # print(
+                #     "section_top_left.contents[5]", section_top_left.contents[5].get("value"))
                 thisId = section_top_left.contents[5].get("value")
             except Exception:
                 thisId = ""
@@ -207,8 +207,8 @@ for pg in range(1, 2):
 
             try:
                 # 網址 c
-                print(
-                    "section_top_left.contents[7]", section_top_left.contents[7].get("value"))
+                # print(
+                #     "section_top_left.contents[7]", section_top_left.contents[7].get("value"))
                 url_c = section_top_left.contents[7].get("value")
             except Exception:
                 url_c = ""
@@ -217,8 +217,7 @@ for pg in range(1, 2):
 
             try:
                 # city 高雄市
-                print(
-                    "section_top_left.contents[9]", section_top_left.contents[9].get("value"))
+                # print("section_top_left.contents[9]", section_top_left.contents[9].get("value"))
                 city = section_top_left.contents[9].get("value")
             except Exception:
                 city = ""
@@ -227,8 +226,7 @@ for pg in range(1, 2):
 
             try:
                 # 網址 no
-                print(
-                    "section_top_left.contents[11]", section_top_left.contents[11].get("value"))
+                # print("section_top_left.contents[11]", section_top_left.contents[11].get("value"))
                 url_no = section_top_left.contents[11].get("value")
             except Exception:
                 url_no = ""
@@ -238,7 +236,7 @@ for pg in range(1, 2):
             try:
                 # 第幾拍
                 times = detail_Soup.find("font", class_="font-link-red").string
-                print("times", times)
+                # print("times", times)
             except Exception:
                 times = ""
                 print('第幾拍發生錯誤')
@@ -248,7 +246,7 @@ for pg in range(1, 2):
                 # 投標日期
                 date_th = detail_Soup.find(
                     "span", attrs={"data-th": "投標日期"}).string
-                print("date_th", date_th)
+                # print("date_th", date_th)
             except Exception:
                 date_th = ""
                 print('投標日期發生錯誤')
@@ -258,7 +256,7 @@ for pg in range(1, 2):
                 # 投標時間
                 time_th = detail_Soup.find(
                     "span", attrs={"data-th": "投標時間"}).string
-                print("time_th", time_th)
+                # print("time_th", time_th)
             except Exception:
                 time_th = ""
                 print('投標時間發生錯誤')
@@ -268,7 +266,7 @@ for pg in range(1, 2):
                 # 建坪
                 building_area = detail_Soup.find(
                     "font", attrs={"title": "推算公設坪數"}).string
-                print("building_area", building_area)
+                # print("building_area", building_area)
             except Exception:
                 building_area = ""
                 print('建坪發生錯誤')
@@ -278,7 +276,7 @@ for pg in range(1, 2):
                 # 地坪
                 lend_area = detail_Soup.find(
                     "span", attrs={"data-th": "地坪"}).contents[0].split(' ')[0]
-                print("lend_area", lend_area)
+                # print("lend_area", lend_area)
             except Exception:
                 lend_area = ""
                 print('地坪發生錯誤')
@@ -288,7 +286,7 @@ for pg in range(1, 2):
                 # 類建蔽率
                 building_ratio = detail_Soup.find(
                     "a", attrs={"title": "類建蔽率"}).contents[0].string
-                print("building_ratio", building_ratio)
+                # print("building_ratio", building_ratio)
             except Exception:
                 building_ratio = ""
                 print('類建蔽率發生錯誤')
@@ -298,7 +296,7 @@ for pg in range(1, 2):
                 # 房屋單價
                 house_per_price = detail_Soup.find(
                     "span", attrs={"data-th": "房屋單價"}).contents[0].strip()
-                print("house_per_price", house_per_price)
+                # print("house_per_price", house_per_price)
             except Exception:
                 house_per_price = ""
                 print('房屋單價發生錯誤')
@@ -308,7 +306,7 @@ for pg in range(1, 2):
                 # 總底價
                 house_total_lowprice = ' '.join(detail_Soup.find(
                     "span", attrs={"data-th": "總底價"}).string.strip().split()).split(' ')[0]
-                print("house_total_lowprice", house_total_lowprice.split(' ')[0])
+                # print("house_total_lowprice", house_total_lowprice.split(' ')[0])
             except Exception:
                 house_total_lowprice = ""
                 print('總底價發生錯誤')
@@ -318,7 +316,7 @@ for pg in range(1, 2):
                 # 實價交易
                 real_price = detail_Soup.find(
                     "font", attrs={"title": "實價交易歷史記錄"}).string.strip()
-                print("real_price", real_price)
+                # print("real_price", real_price)
             except Exception:
                 real_price = ""
                 print('實價交易發生錯誤')
@@ -328,7 +326,7 @@ for pg in range(1, 2):
                 # 保證金
                 caution_money = detail_Soup.find(
                     "span", attrs={"data-th": "保證金"}).contents[0].strip()
-                print("caution_money", caution_money)
+                # print("caution_money", caution_money)
             except Exception:
                 caution_money = ""
                 print('保證金發生錯誤')
@@ -338,7 +336,7 @@ for pg in range(1, 2):
                 # 開標結果
                 result_price = detail_Soup.find(
                     "span", attrs={"data-th": "開標結果"}).contents[0]
-                print("result_price", result_price)
+                # print("result_price", result_price)
             except Exception:
                 result_price = ""
                 print('開標結果發生錯誤')
@@ -348,7 +346,7 @@ for pg in range(1, 2):
                 # 公告現值 元/㎡
                 open_price = detail_Soup.find(
                     "span", attrs={"data-th": "公告現值"}).contents[0].strip()
-                print("open_price", open_price)
+                # print("open_price", open_price)
             except Exception:
                 open_price = ""
                 print('公告現值發生錯誤')
@@ -358,7 +356,7 @@ for pg in range(1, 2):
                 # 拍後增值
                 after_result_price = detail_Soup.find(
                     "span", attrs={"data-th": "拍後增值"}).contents[0]
-                print("after_result_price", after_result_price)
+                # print("after_result_price", after_result_price)
             except Exception:
                 after_result_price = ""
                 print('拍後增值發生錯誤')
@@ -368,7 +366,7 @@ for pg in range(1, 2):
                 # 屋齡
                 house_years = detail_Soup.find(
                     "span", attrs={"data-th": "屋齡"}).contents[0].strip()
-                print("house_years", house_years)
+                # print("house_years", house_years)
             except Exception:
                 house_years = ""
                 print('屋齡發生錯誤')
@@ -378,7 +376,7 @@ for pg in range(1, 2):
                 # 社區名稱
                 community_name = detail_Soup.find(
                     "span", attrs={"data-th": "社區名稱"}).contents[0].strip()
-                print("community_name", community_name)
+                # print("community_name", community_name)
             except Exception:
                 community_name = ""
                 print('社區名稱發生錯誤')
@@ -392,8 +390,13 @@ for pg in range(1, 2):
                 contentLand2 = ""
                 for x in contentLand:
                     # print( x.strip())
-                    contentLand2 = str(contentLand2)+x.strip()  # strip去掉空白
-                print("contentLand2", contentLand2)
+                    # contentLand2 = str(contentLand2)+x.strip()  # strip去掉空白
+                    contentLand2 = str(contentLand2)+x    # strip 留著空白
+                contentLand2=contentLand2[1:] #去掉字首   \n 
+        
+                contentLand2=contentLand2[:-36] #去掉字尾  \r\n\r\n+一堆空白 
+                # print("contentLand2", contentLand2)
+               
             except Exception:
                 contentLand2 = ""
                 print('土地發生錯誤')
@@ -407,7 +410,7 @@ for pg in range(1, 2):
                 contentCase2 = ""
                 for x in contentCase:
                     contentCase2 = str(contentCase2)+x.strip()
-                print("contentCase2", contentCase2)
+                # print("contentCase2", contentCase2)
             except Exception:
                 contentCase2 = ""
                 print('建物發生錯誤')
@@ -421,6 +424,7 @@ for pg in range(1, 2):
                 contentRecord2 = ""
                 for x in contentRecord:
                     contentRecord2 = str(contentRecord2)+x
+                contentRecord2=contentRecord2[2:]
                 print("contentRecord2", contentRecord2)
             except Exception:
                 contentRecord2 = ""
@@ -431,7 +435,7 @@ for pg in range(1, 2):
                 # 得標人查詢
                 winner = detail_Soup.find(
                     "a", attrs={"title": "得標人查詢"}).contents[0].string
-                print("winner", winner)
+                # print("winner", winner)
             except Exception:
                 winner = ""
                 print('得標人查詢發生錯誤')
@@ -445,10 +449,12 @@ for pg in range(1, 2):
                 record2 = ""
                 for x in record:
                     record2 = str(record2)+x
+                record2=record2[1:]
+
                 print("record2", record2)
             except Exception:
                 record2 = ""
-                print('拍賣紀錄發生錯誤')
+                # print('拍賣紀錄發生錯誤')
                 pass
 
                 # 謄本資料????????????????????????????????? 有空再取得
@@ -457,11 +463,22 @@ for pg in range(1, 2):
                 # 土地漲價總額 字多
                 increase = detail_Soup.find(
                     "td", attrs={"class": "increase"}).strings
-                # print("record", record)
+                # print("increase", increase)
                 increase2 = ""
+                pattern = re.compile( '\d+'+'‧') #正則 pattern
+                
                 for x in increase:
-                    increase2 = str(increase2)+x
-                print("increase2", increase2)
+                    if '\r\n' not in x :  #因為第一個是\r\n   1‧ 把它去掉
+                        if pattern.match(x) == None:  #正則 只要pattern 不match 數字+‧ ，字串後面就加"\r\n"
+                            increase2 = str(increase2)+x+"\r\n"
+                        else :
+                            increase2 = str(increase2)+x
+                increase2="1‧"+increase2 #把1‧ 加回來
+                increase2= increase2[:-10]    #  去掉字尾 \n\r\n\r\n
+               
+
+
+
             except Exception:
                 increase2 = ""
                 print('土地漲價總額發生錯誤')
@@ -471,7 +488,7 @@ for pg in range(1, 2):
                 # 社區資料 使用執照
                 license = detail_Soup.find(
                     "a", attrs={"title": "使用執照"}).contents[0].string
-                print("license", license)
+                # print("license", license)
             except Exception:
                 license = ""
                 print('社區資料 使用執照發生錯誤')
@@ -495,7 +512,7 @@ for pg in range(1, 2):
                         img_list.append(x)
                     except:
                         pass
-                print("img_list", img_list)
+                # print("img_list", img_list)
             except Exception:
                 img_list = ""
                 print('照片發生錯誤')
@@ -505,11 +522,11 @@ for pg in range(1, 2):
                 # 人氣 主建物 公告坪數
                 top_left = detail_Soup.find(
                     "div", attrs={"class": "col-lg-4 order-lg-8 align-self-end text-right"}).stripped_strings
-                print("top_left", top_left)
+                # print("top_left", top_left)
                 top_left2 = ""
                 for x in top_left:
                     top_left2 = str(top_left2)+x.strip()
-                print("top_left2", top_left2)
+                # print("top_left2", top_left2)
             except Exception:
                 top_left2 = ""
                 print('人氣 主建物 公告坪數發生錯誤')
@@ -555,7 +572,7 @@ for pg in range(1, 2):
                     "img_list": img_list,  # 照片
 
                 }
-                print("doc", doc)
+                # print("doc", doc)
                 # 寫入 FIRESTORE 資料庫
                 # doc_ref = db.collection("soez").document(ids) 
                 # doc_ref.set(doc) #FIRESTORE
@@ -563,10 +580,10 @@ for pg in range(1, 2):
                 # 寫入 JSON 資料 要記得新增檔案 並寫一個空list
                 with open('soezdata.json', 'r+', encoding='utf-8') as f:
                     json_data = json.load(f)
-                print("djson_data", json_data,)
+                # print("djson_data", json_data,)
                 json_data.append(doc)
                 json_data=json.dumps(json_data, ensure_ascii=False)
-                print("docensure_ascii=False", json_data)
+                # print("docensure_ascii=False", json_data)
                 with open('soezdata.json', 'w+', encoding='utf-8') as f:
                     f.write(json_data) 
             except Exception:

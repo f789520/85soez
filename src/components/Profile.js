@@ -1,4 +1,4 @@
-import "./profile.css"; 
+import "./profile.css";
 import "./react-editext.css";
 import styled from "styled-components";
 import { useAuthValue } from "./AuthContext";
@@ -170,7 +170,7 @@ export const Profile = () => {
 
   useFirestoreConnect([{ collection: "soez" }]);
 
-  const handleSave = (displayName) => { 
+  const handleSave = (displayName) => {
     setDisplayName(displayName);
     triggerUpdateUser(displayName);
   };
@@ -587,7 +587,15 @@ export const FavTable = () => {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <td
+                      {...cell.getCellProps({
+                        style: {
+                          width: cell.column.width,
+                        },
+                      })}
+                    >
+                      {cell.render("Cell")}
+                    </td>
                   );
                 })}
               </tr>

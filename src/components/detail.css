@@ -4,6 +4,10 @@ table {
   width: 100%;
 }
 
+#table1 td{ 
+  height: 60px;
+}
+
 table th {
   border: 1px solid #ddd;
   padding: 8px;
@@ -15,8 +19,8 @@ table td {
   border: 1px solid #ddd;
   padding: 8px;
   font-size: 19px;
-  color: rgb(0, 0, 0);
-  width: 100px;
+  color: rgb(0, 0, 0); 
+  height: 80px;
 }
 
 table tr:nth-child(even) {
@@ -38,10 +42,10 @@ table th, tfoot td {
 .MapContainer {
   flex-direction: column;
   margin: 10px auto;
-  display: flex;
-  /* width: 360px; */
-  max-width: 640px;
-  /* height:640px; */
+  display: flex; 
+  max-width: 640px; 
+  background: #f8f7f7;
+  padding: 15px;
 }
 
 .google-map-text {
@@ -67,22 +71,4 @@ table th, tfoot td {
 .MuiSvgIcon-root {
   font-size: 40px !important;
 }
-
-/* @media (min-width:768px) and (max-width:1200px) {
-  .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root {
-    position: fixed;
-    right: 0px;
-  }
-
-} */
-/* .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root{
-
-  position: fixed;
-}
-
-#fav{
-  position: fixed;
-}
-.MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root{
-  position: fixed;
-} */
+ 

@@ -6,129 +6,97 @@
   "About": {
     "paragraph": "85soez是跟隨法院物件動態的專業法拍網站，裡面蒐羅了台灣各地方法院的法拍物件、北中南的台灣金融資產服務股份有限公司、法務部執行署、國產署.....等各式各樣的拍賣物件",
     "Why": [
-      "專業律師事務所經營",
       "強大的法律團隊",
       "客戶最堅強的後盾",
+      "專業律師事務所經營",
       "法律問題交由最專業法律團隊"
     ],
     "Why2": [
+      "完整代標服務流程",
+      "專業、在線老師協助",
       "幫您找到最適合的物件",
-      "代標客戶提供免費法律諮詢",
-      "業界第一完整代標服務流程",
-      "強大、專業、在線老師幫您操作"
+      "客戶提供免費法律諮詢"
     ]
   },
   "Gallery": [
     {
       "title": "幸福空間直播專訪",
-      "largeImage": "img/portfolio/01-large.jpg",
-      "smallImage": "img/portfolio/01-small.jpg"
+      "largeImage": "img/portfolio/01-small.jpg",
+      "smallImage": "img/portfolio/01-small2.jpg"
     },
     {
       "title": "幸福空間直播專訪",
-      "largeImage": "img/portfolio/02-large.jpg",
-      "smallImage": "img/portfolio/02-small.jpg"
+      "largeImage": "img/portfolio/02-small.jpg",
+      "smallImage": "img/portfolio/02-small2.jpg"
     },
     {
       "title": "漢聲電台專訪",
-      "largeImage": "img/portfolio/03-large.jpg",
+      "largeImage": "img/portfolio/03-small.jpg",
       "smallImage": "img/portfolio/03-small.jpg"
     },
     {
       "title": "套房規劃設計案例",
-      "largeImage": "img/portfolio/04-large.jpg",
+      "largeImage": "img/portfolio/04-small.jpg",
       "smallImage": "img/portfolio/04-small.jpg"
     },
     {
       "title": "套房規劃設計案例",
-      "largeImage": "img/portfolio/05-large.jpg",
+      "largeImage": "img/portfolio/05-small.jpg",
       "smallImage": "img/portfolio/05-small.jpg"
     },
     {
       "title": "套房規劃設計案例",
-      "largeImage": "img/portfolio/06-large.jpg",
+      "largeImage": "img/portfolio/06-small.jpg",
       "smallImage": "img/portfolio/06-small.jpg"
     },
     {
       "title": "套房規劃設計案例",
-      "largeImage": "img/portfolio/07-large.jpg",
+      "largeImage": "img/portfolio/07-small.jpg",
       "smallImage": "img/portfolio/07-small.jpg"
     },
     {
       "title": "套房規劃設計案例",
-      "largeImage": "img/portfolio/08-large.jpg",
+      "largeImage": "img/portfolio/08-small.jpg",
       "smallImage": "img/portfolio/08-small.jpg"
     },
     {
       "title": "套房規劃設計案例",
-      "largeImage": "img/portfolio/09-large.jpg",
+      "largeImage": "img/portfolio/09-small.jpg",
       "smallImage": "img/portfolio/09-small.jpg"
     }
   ],
   "Services": [
     {
-      "icon": "fa fa-wordpress",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "icon": "fa fa-filter",
+      "name": "過濾案件",
+      "text": "●查明附屬增建物有無在拍賣範圍。\r\n●調查左鄰右舍及區域投標者近況。\r\n●查明有無第三人呈報租約，拍定後是否點交。"
     },
     {
       "icon": "fa fa-cart-arrow-down",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "name": "評估標價",
+      "text": "●投標文案撰寫。\r\n●調查左鄰右舍及區域投標者近況。\r\n●投標前一天提供評估報告。\r\n●投標全場陪同及標價最後建議。"
     },
     {
-      "icon": "fa fa-cloud-download",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "icon": "fa fa-home",
+      "name": "包辦交屋",
+      "text": "●律師書寫聲請點交狀。\r\n●法院遞交狀紙。\r\n●追蹤點交進度。\r\n●催促管區警察到場。\r\n●安排協商現住人交屋事項。\r\n●安排鎖匠待命。"
     },
     {
-      "icon": "fa fa-language",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "icon": "fa fa-university",
+      "name": "代墊尾款",
+      "text": "●辦理銀行代墊投標尾款手續。\r\n●催促法院核發【不動產權利移轉證書】。\r\n●快速辦理產權過戶。"
     },
     {
-      "icon": "fa fa-plane",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "icon": "fa fa-ban",
+      "name": "代標守則",
+      "text": "●不經手客戶投標保證金及投標尾款。\r\n●不巧立名目，賺取約定以外費用。\r\n●不賺取差價。"
     },
     {
-      "icon": "fa fa-pie-chart",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+      "icon": "fa fa-book",
+      "name": "投標必備文件",
+      "text": "●國民身分證。\r\n●印章。\r\n●保證金。\r\n●投標書。"
     }
-  ],
-  "Testimonials": [
-    {
-      "img": "img/testimonials/01.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
-    },
-    {
-      "img": "img/testimonials/02.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
-    },
-    {
-      "img": "img/testimonials/03.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
-    },
-    {
-      "img": "img/testimonials/04.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
-    },
-    {
-      "img": "img/testimonials/05.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
-    },
-    {
-      "img": "img/testimonials/06.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
-    }
-  ],
+  ], 
   "Team": [
     {
       "img": "img/team/01.jpg",
@@ -145,27 +113,6 @@
     "line": "https://line.me/R/ti/p/@iuh8829s",
     "youtube": "https://www.youtube.com/channel/UC4tmoVVt3QR_GfwjsT1wuog",
     "instagram": "https://www.instagram.com/aiden_85soez/"
-  },
-  "Features": [
-    {
-      "icon": "fa fa-comments-oddddddddddddddddddddddd",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
-    },
-    {
-      "icon": "fa fa-bullhorn",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
-    },
-    {
-      "icon": "fa fa-group",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
-    },
-    {
-      "icon": "fa fa-magic",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
-    }
-  ]
+  } 
+   
 }

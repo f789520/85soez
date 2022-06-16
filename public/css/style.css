@@ -9,13 +9,18 @@ html {
   height: 100% !important;
 }
 
+.MuiFormControl-root {
+
+  width: 164px;
+}
+
 .MuiOutlinedInput-input {
   padding: 10px 20px !important;
 }
 
 .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
-  line-height: 1em !important;
-  font-size: 2rem !important;
+  line-height: 1.1em !important;
+  font-size: 1.7rem !important;
 }
 
 .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
@@ -488,7 +493,6 @@ header .intro-text {
 
 .hover-bg:hover .hover-text>h4 {
   opacity: 1;
-  /* -webkit-backface-visibility: hidden; */
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
@@ -738,4 +742,43 @@ label {
   #about img {
     margin: 50px 0;
   }
+}
+
+@media (max-width: 993px) {
+  #FilterContainerBox {
+
+    display: flex;
+    flex-direction: column;
+
+
+
+  }
+
+  #FilterContainerBox div {
+
+    margin-top: 10px;
+  }
+
+
+  #FilterContainerBox2 {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+
+
+  #FilterContainerBox2 div span {
+
+    margin-right: 10px;
+
+  }
+
+  #TextFieldBox {
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
 }

@@ -15,7 +15,7 @@ export const GlobalFilter = ({ filter, setFilter, preGlobalFilteredRows }) => {
         variant="outlined"
         id="outlined-basic"
         label="請輸入關鍵字查詢物件..."
-        style={{ width: "90%" }}
+        style={{ width: "50%" }}
         value={value || ""}
         // placeholder=  {`  請輸入關鍵字查詢物件...`}
         onChange={(e) => {

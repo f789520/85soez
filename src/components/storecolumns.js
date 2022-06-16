@@ -19,6 +19,7 @@ export const STORECOLUMNS = [
       <Link to={`detail?ids=${original.ids}`}> {value}</Link>
     ),
     // disableFilters:true
+    width: 130,
   },
   // 拍次
   {
@@ -27,8 +28,10 @@ export const STORECOLUMNS = [
     accessor: "times",
     // disableFilters: true,
     // sticky: 'left',
-    Filter: ColumnFilterTimes,
+    Filter: ColumnFilterTimes, // 第一拍
+    width: 90,
   },
+
   //   # 投標日期
   {
     Header: "投標日期",
@@ -36,6 +39,7 @@ export const STORECOLUMNS = [
     accessor: "date_th",
     // sticky: 'left',
     Filter: DateFilter,
+    width: 100,
   },
 
   //   # 開標結果
@@ -45,15 +49,14 @@ export const STORECOLUMNS = [
     accessor: "result_price",
     sticky: "left",
     Filter: ColumnFilterResult,
+    width: 100,
   },
   //   # 地址
   {
     Header: "地址",
     Footer: "地址",
     accessor: "address",
-    maxWidth: 400,
-    minWidth: 140,
-    width: 60,
+    width: 300,
     Filter: ColumnFilterArea,
     Cell: ({ cell: { value }, row: { original } }) => (
       <Link to={`detail?ids=${original.ids}`}> {value}</Link>
@@ -66,6 +69,7 @@ export const STORECOLUMNS = [
     accessor: "house_total_lowprice",
     Filter: NumberRangeColumnFilter,
     filter: "between",
+    width: 120,
   },
   //   # 地坪
   {
@@ -73,8 +77,7 @@ export const STORECOLUMNS = [
     Footer: "地坪",
     accessor: "lend_area",
     disableFilters: true,
-
-    // Cell: ({ cell: { value }, row: { original }   }) => <Link to={`detail/${original.id}`}>{value}{console.log("value",value) }{console.log("original",original.ids)} </Link>
+    width: 120,
   },
 ];
 
@@ -88,6 +91,7 @@ export const PROFILE_COLUMNS = [
     Cell: ({ cell: { value }, row: { original } }) => (
       <Link to={`../detail?ids=${original.ids}`}> {value}</Link>
     ),
+    width: 140,
     // disableFilters:true
   },
   // 拍次
@@ -98,6 +102,7 @@ export const PROFILE_COLUMNS = [
     // disableFilters: true,
     // sticky: 'left',
     Filter: ColumnFilterTimes,
+    width: 90,
   },
   //   # 投標日期
   {
@@ -106,6 +111,7 @@ export const PROFILE_COLUMNS = [
     accessor: "date_th",
     // sticky: 'left',
     Filter: ColumnFilter,
+    width: 100,
   },
   //   # 開標結果
   {
@@ -114,6 +120,7 @@ export const PROFILE_COLUMNS = [
     accessor: "result_price",
     sticky: "left",
     Filter: ColumnFilterResult,
+    width: 100,
   },
   //   # 地址
   {
@@ -124,6 +131,7 @@ export const PROFILE_COLUMNS = [
     Cell: ({ cell: { value }, row: { original } }) => (
       <Link to={`../detail?ids=${original.ids}`}> {value}</Link>
     ),
+    width: 300,
   },
   //   # 總底價
   {
@@ -132,6 +140,7 @@ export const PROFILE_COLUMNS = [
     accessor: "house_total_lowprice",
     Filter: NumberRangeColumnFilter,
     filter: "between",
+    width: 120,
   },
   //   # 地坪
   {
@@ -139,6 +148,7 @@ export const PROFILE_COLUMNS = [
     Footer: "地坪",
     accessor: "lend_area",
     disableFilters: true,
+    width: 120,
     // Cell: ({ cell: { value }, row: { original }   }) => <Link to={`detail/${original.id}`}>{value}{console.log("value",value) }{console.log("original",original.ids)} </Link>
   },
 ];

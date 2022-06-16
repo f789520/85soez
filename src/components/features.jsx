@@ -11,7 +11,7 @@ import {
 import soezdata from "../data/soezdata.json";
 import { STORECOLUMNS } from "./storecolumns";
 import { GlobalFilter } from "./GlobalFilter";
-import { ColumnFilter } from "./ColumnFilter"; 
+import { ColumnFilter } from "./ColumnFilter";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -19,10 +19,14 @@ import Select from "@material-ui/core/Select";
 
 const FilterContainer = styled.div.attrs({ className: "FilterContainer" })`
   display: flex;
+  justify-content: center;
+  @media (max-width: 993px) {
+    /* width:970px, */
+  }
 `;
 
 const Styles = styled.div.attrs({ className: "Styles" })`
-  @media (max-width: 360px) {
+  @media (max-width: 403px) {
     th:nth-of-type(1),
     th:nth-of-type(4),
     th:nth-of-type(7),
@@ -58,7 +62,7 @@ const Styles = styled.div.attrs({ className: "Styles" })`
     }
   }
 
-  @media (min-width: 360px) and (max-width: 570px) {
+  @media (min-width: 403px) and (max-width: 570px) {
     th:nth-of-type(4),
     th:nth-of-type(7),
     td:nth-of-type(4),
@@ -140,7 +144,50 @@ export const BasicTable = () => {
         filter={globalFilter}
         setFilter={setGlobalFilter}
       />
-      <FilterContainer> 
+      {/* 一個的方法 */}
+      <FilterContainer>
+        {headerGroups.map((headerGroup) => (
+          <div {...headerGroup.getHeaderGroupProps()}>
+            <div
+              id="FilterContainerBox"
+              style={{
+                display: "flex",
+                margin: "15px auto",
+              }}
+            >
+              <div> {headerGroup.headers[1].render("Filter")} </div>
+              <div> {headerGroup.headers[4].render("Filter")} </div>
+              <div> {headerGroup.headers[3].render("Filter")}</div>
+            </div>
+            <div
+              id="FilterContainerBox2"
+              style={{
+                display: "flex",
+
+                margin: "10px auto",
+              }}
+            >
+              <div> {headerGroup.headers[0].render("Filter")}</div>
+              <div
+                style={{
+                  height: "10px ",
+                }}
+              ></div>
+              <div> {headerGroup.headers[2].render("Filter")}</div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+              }}
+            >
+              {" "}
+              {headerGroup.headers[5].render("Filter")}
+            </div>
+          </div>
+        ))}
+      </FilterContainer>
+
+      {/* <FilterContainer>
         {headerGroups.map((headerGroup) => (
           <div
             style={{
@@ -159,13 +206,16 @@ export const BasicTable = () => {
             ))}
           </div>
         ))}
-      </FilterContainer>
+      </FilterContainer> */}
+
       <div
         style={{
           textAlign: "right",
           color: "black",
           fontSize: "16px",
           marginRight: "20px",
+          justifyContent: "space-between",
+          marginLeft: "20px",
         }}
       >
         <span style={{ textAlign: "right", color: "black", fontSize: "16px" }}>
@@ -181,11 +231,7 @@ export const BasicTable = () => {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps(
-                    column.getSortByToggleProps()
-                  )}
-                >
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
                   <span>
                     {column.isSorted
@@ -209,7 +255,6 @@ export const BasicTable = () => {
                     <td
                       {...cell.getCellProps({
                         style: {
-                          minWidth: cell.column.minWidth,
                           width: cell.column.width,
                         },
                       })}
@@ -276,6 +321,7 @@ export const BasicTable = () => {
           variant="contained"
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
+          style={{ width: "30px", fontSize: "10px" }}
         >
           {"|＜＜"}
         </Button>{" "}
@@ -284,24 +330,25 @@ export const BasicTable = () => {
           variant="contained"
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
-          style={{ width: "100px", fontSize: "20px" }}
+          style={{ width: "50px", fontSize: "20px" }}
         >
-          上一頁
+          ＜
         </Button>{" "}
-        <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+        <span> &nbsp;&nbsp;&nbsp; </span>
         <Button
           variant="contained"
           onClick={() => nextPage()}
           disabled={!canNextPage}
-          style={{ width: "100px", fontSize: "20px" }}
+          style={{ width: "50px", fontSize: "20px" }}
         >
-          下一頁
+          ＞
         </Button>{" "}
         <span> &nbsp; </span>
         <Button
           variant="contained"
           onClick={() => gotoPage(pageCount - 1)}
           disabled={!canNextPage}
+          style={{ width: "30px", fontSize: "10px" }}
         >
           {"＞＞|"}
         </Button>{" "}
