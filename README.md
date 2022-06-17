@@ -31,9 +31,16 @@
 
 
 
+
 ## 功能介紹
 * 查詢關鍵字:
-* 
+<br/>
+
+![錄製_2022_06_17_19_28_28_570_AdobeExpress](https://user-images.githubusercontent.com/92971684/174290366-2631a93a-0fd2-4d73-a4b1-c490c9389ba3.gif)
+
+
+<br/>
+ 
 * 篩選物件:
 * 顯示物件筆數:
 
