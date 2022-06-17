@@ -30,7 +30,7 @@
 ## 網站導覽 <a name="網站導覽"/> 
 * 查詢關鍵字 :
 
-![1](https://user-images.githubusercontent.com/92971684/174336839-6c70380e-7edb-4bbd-a7b1-e6b96ae258fc.gif)
+<img src="https://user-images.githubusercontent.com/92971684/174336839-6c70380e-7edb-4bbd-a7b1-e6b96ae258fc.gif" " alt="顯示物件筆數"/><br/>
 
 * 篩選物件 :
 
@@ -43,11 +43,11 @@
 * 詳細頁面 : <br/>
 點選愛心加入我的收藏<br/> 
 
-<img src="https://user-images.githubusercontent.com/92971684/174333233-8c2186c5-15ee-4d4a-955b-0cb09932f8ad.png" width="400" alt="顯示物件筆數"/><br/>
-<img src="https://user-images.githubusercontent.com/92971684/174332896-0d66f572-8007-484b-9752-2cd6dc2c60f3.png" width="800" alt="顯示物件筆數"/><br/> 
+<img src="https://user-images.githubusercontent.com/92971684/174333233-8c2186c5-15ee-4d4a-955b-0cb09932f8ad.png" width="400" alt="加入我的收藏"/><br/>
+<img src="https://user-images.githubusercontent.com/92971684/174332896-0d66f572-8007-484b-9752-2cd6dc2c60f3.png" width="800" alt="詳細頁面"/><br/> 
 * 會員中心 : <br/>
 顯示會員資料及我的收藏清單<br/>
-<img src="https://user-images.githubusercontent.com/92971684/174333729-7674b4ce-85eb-45f9-a7a6-79c8b08be62b.png" width="800" alt="顯示物件筆數"/><br/>
+<img src="https://user-images.githubusercontent.com/92971684/174333729-7674b4ce-85eb-45f9-a7a6-79c8b08be62b.png" width="800" alt="顯示會員資料及我的收藏清單"/><br/>
 
 ## 使用技術
 
