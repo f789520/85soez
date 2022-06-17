@@ -93,7 +93,7 @@
     * Storage <a name="storage"/>
         - 會員大頭貼照片儲存
 * Web Crawler
-    * Python：`BeautifulSoup`
+    * Python :　`BeautifulSoup`
 
 
 
@@ -103,7 +103,7 @@
 :boy: 丁仁傑 Jen-Chieh, Ting
 <br/>
 
-:email: Email : f789520@gmail.com
+:email: Email：f789520@gmail.com
 <br/>
 
 :mag: [Linkedin](https://www.linkedin.com/in/%E4%BB%81%E5%82%91-%E4%B8%81-a32590139/)
