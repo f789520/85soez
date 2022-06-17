@@ -13,15 +13,12 @@
 ![image](https://user-images.githubusercontent.com/92971684/174254355-e65064cb-4f09-42cf-a5ed-2328c9058ba1.png)
 
 ## Table of Contents
-- [功能介紹](#功能介紹)
-    - [使用技術]
-
+- [功能介紹](#功能介紹) 
 
 - [前端技術](#前端技術)
     - [React Router](#react-router)
     - [React Context](#react-context)
     - [React Table](#react-table)
-
 - [後端技術](#後端技術)
     - [Hosting](#hosting)
     - [Authentication](#authentication)
@@ -35,8 +32,10 @@
 
 
 ## 功能介紹
-
-
+* 查詢關鍵字:
+* 
+* 篩選物件:
+* 顯示物件筆數:
 
 
 
