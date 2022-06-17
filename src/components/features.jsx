@@ -121,6 +121,7 @@ export const BasicTable = () => {
     pageCount,
     preGlobalFilteredRows,
     state,
+    rows,
     setGlobalFilter,
   } = useTable(
     {
@@ -219,8 +220,10 @@ export const BasicTable = () => {
         }}
       >
         <span style={{ textAlign: "right", color: "black", fontSize: "16px" }}>
-          {preGlobalFilteredRows.length} 個 搜尋結果
+          {rows.length} 個搜尋結果
+
         </span>
+
         <div style={{ textAlign: "right", color: "red", fontSize: "16px" }}>
           (點擊欄位可排序)
         </div>
