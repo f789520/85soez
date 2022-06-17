@@ -1,0 +1,74 @@
+table {
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table1 td{ 
+  height: 60px;
+}
+
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 23px;
+  color: rgb(0, 0, 0);
+}
+
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 19px;
+  color: rgb(0, 0, 0); 
+  height: 80px;
+}
+
+table tr:nth-child(even) {
+  background-color: #f8f7f7;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th, tfoot td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4c7daf;
+  color: white;
+}
+
+.MapContainer {
+  flex-direction: column;
+  margin: 10px auto;
+  display: flex; 
+  max-width: 640px; 
+  background: #f8f7f7;
+  padding: 15px;
+}
+
+.google-map-text {
+  margin: 10px auto;
+}
+
+.google-map-code {
+  margin: 10px auto;
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+}
+
+.google-map-code iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.MuiSvgIcon-root {
+  font-size: 40px !important;
+}
+ 
