@@ -80,7 +80,8 @@ export function ColumnFilterArea({
           letterSpacing: "inherit",
           animationDuration: "10ms",
           borderWidth: "0.5px",
-          fontSize: "16px",
+          fontSize: "12px",
+          paddingLeft: "7px",
         }}
         value={filterValue}
         onChange={(e) => {
@@ -191,7 +192,8 @@ export function ColumnFilterTimes({
           letterSpacing: "inherit",
           animationDuration: "10ms",
           borderWidth: "0.5px",
-          fontSize: "16px",
+          fontSize: "12px",
+          paddingLeft: "7px",
         }}
         value={filterValue}
         onChange={(e) => {
@@ -254,7 +256,8 @@ export function ColumnFilterResult({
           letterSpacing: "inherit",
           animationDuration: "10ms",
           borderWidth: "0.5px",
-          fontSize: "16px",
+          fontSize: "12px",
+          paddingLeft: "7px",
         }}
         value={filterValue}
         onChange={(e) => {
