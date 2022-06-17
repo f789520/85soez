@@ -2,6 +2,8 @@
 # 85 SOEZ 法拍網
 這是一個提供近期法拍相關整理資訊的網站 (新竹、台中、台南、高雄)
 
+
+
 ## 專案展示網址
 - 專案網址：https://soez-web.web.app/  
 
@@ -24,21 +26,16 @@
     - [Storage](#storage)
 - [聯絡方式](#聯絡方式)　
 
-## 網站導覽 <a name="網站導覽"/>
+## 網站導覽 <a name="網站導覽"/> 
+* 查詢關鍵字 :  
 
-* 查詢關鍵字 : <br/>
+![1](https://user-images.githubusercontent.com/92971684/174336839-6c70380e-7edb-4bbd-a7b1-e6b96ae258fc.gif)
 
-![Hnet-image](https://user-images.githubusercontent.com/92971684/174327887-a5bb58bb-a837-474c-ba1c-ebc29dbeaeeb.gif)
+* 篩選物件 :  
 
-<br/>
+![2](https://user-images.githubusercontent.com/92971684/174336916-f0e308a8-e764-4b96-83ed-047f0a1bbcbc.gif)
 
-* 篩選物件 : <br/>　
-
-![Hnet-image (2)](https://user-images.githubusercontent.com/92971684/174329829-c905f886-e68b-4d2b-8285-558edffe1d36.gif)
-
-<br/>
-
-* 顯示物件筆數 : <br/>
+* 顯示物件筆數 :  
 
 <img src="https://user-images.githubusercontent.com/92971684/174329938-b2d078ce-c513-4aae-b822-7226c0dc49aa.png" width="800" alt="顯示物件筆數"/><br/>
 
