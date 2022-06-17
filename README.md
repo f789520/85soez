@@ -4,12 +4,17 @@
 
 
 ## 專案展示
--專案網址:https://soez-web.web.app/ ![Uploading Snipaste_2022-06-17_15-47-05.png…]()
+-專案網址：https://soez-web.web.app/  
 
-<br/>
--測試帳號:f789520@hotmail.com 
-<br/>
--測試密碼:123123 
-<br/>
+-測試帳號：f789520@hotmail.com 
+
+-測試密碼：123123 
+
 ![image](https://user-images.githubusercontent.com/92971684/174254355-e65064cb-4f09-42cf-a5ed-2328c9058ba1.png)
+
 ## 使用技術
+### 前端
+*HTML
+*CSS
+*Javascript
+*React
