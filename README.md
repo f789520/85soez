@@ -2,19 +2,17 @@
 # 85 SOEZ 法拍網
 這是一個提供近期法拍相關整理資訊的網站 (新竹、台中、台南、高雄)
 
-
-## 專案展示
+## 專案展示網址
 - 專案網址：https://soez-web.web.app/  
 
 - 測試帳號：f789520@hotmail.com 
 
-- 測試密碼：123123 
+- 測試密碼：123123 　
   
 <img src="https://user-images.githubusercontent.com/92971684/174331089-44181fa4-b9e0-4ee7-a593-364cd8a5deb0.png" width="800" alt="顯示物件筆數"/><br/>
 
 ## Table of Contents
-- [功能介紹](#功能介紹) 
-
+- [網站導覽](#網站導覽) 
 - [前端技術](#前端技術)
     - [React Router](#react-router)
     - [React Context](#react-context)
@@ -24,44 +22,34 @@
     - [Authentication](#authentication)
     - [Firestore](#firestore)
     - [Storage](#storage)
-- [聯絡方式](#聯絡方式)
+- [聯絡方式](#聯絡方式)　
 
+## 網站導覽 <a name="網站導覽"/>
 
-
-
-
-
-
-## 網站導覽
-* 查詢關鍵字:
-<br/>
+* 查詢關鍵字 : <br/>
 
 ![Hnet-image](https://user-images.githubusercontent.com/92971684/174327887-a5bb58bb-a837-474c-ba1c-ebc29dbeaeeb.gif)
- 
+
 <br/>
- 
-* 篩選物件:
-<br/>
+
+* 篩選物件 : <br/>　
 
 ![Hnet-image (2)](https://user-images.githubusercontent.com/92971684/174329829-c905f886-e68b-4d2b-8285-558edffe1d36.gif)
 
 <br/>
 
-* 顯示物件筆數:
- 
+* 顯示物件筆數 : <br/>
+
 <img src="https://user-images.githubusercontent.com/92971684/174329938-b2d078ce-c513-4aae-b822-7226c0dc49aa.png" width="800" alt="顯示物件筆數"/><br/>
 
-* 詳細頁面:<br/>
+* 詳細頁面 : <br/>
 點選愛心加入我的收藏<br/> 
 
 <img src="https://user-images.githubusercontent.com/92971684/174333233-8c2186c5-15ee-4d4a-955b-0cb09932f8ad.png" width="400" alt="顯示物件筆數"/><br/>
-
 <img src="https://user-images.githubusercontent.com/92971684/174332896-0d66f572-8007-484b-9752-2cd6dc2c60f3.png" width="800" alt="顯示物件筆數"/><br/> 
-
-* 會員中心:<br/>
-顯示我的收藏清單<br/>
+* 會員中心 : <br/>
+顯示會員資料及我的收藏清單<br/>
 <img src="https://user-images.githubusercontent.com/92971684/174333729-7674b4ce-85eb-45f9-a7a6-79c8b08be62b.png" width="800" alt="顯示物件筆數"/><br/>
-  
 
 ## 使用技術
 
@@ -80,7 +68,7 @@
 * Responsive Web Design
 * Webpack & Babel
 * ESLint
-* 第三方套件:`emailjs`
+* 第三方套件 : `emailjs`
  
 ### 後端技術 <a name="後端技術"/>
 * Firebase(version 9)
@@ -93,7 +81,7 @@
     * Storage <a name="storage"/>
         - 會員大頭貼照片儲存
 * Web Crawler
-    * Python :　`BeautifulSoup`
+    * Python : `BeautifulSoup`
 
 
 
