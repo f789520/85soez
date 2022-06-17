@@ -25,18 +25,18 @@
     - [Firestore](#firestore)
     - [Storage](#storage)
 - [聯絡方式](#聯絡方式)　
-![2](https://user-images.githubusercontent.com/92971684/174338032-987551fb-7bf2-403b-97fb-60e8a803364e.gif)
+
 
 ## 網站導覽 <a name="網站導覽"/> 
-* 查詢關鍵字 :  
+* 查詢關鍵字 :
 
 ![1](https://user-images.githubusercontent.com/92971684/174336839-6c70380e-7edb-4bbd-a7b1-e6b96ae258fc.gif)
 
-* 篩選物件 :  
+* 篩選物件 :
 
 ![2](https://user-images.githubusercontent.com/92971684/174336916-f0e308a8-e764-4b96-83ed-047f0a1bbcbc.gif)
 
-* 顯示物件筆數 :  
+* 顯示物件筆數 :
 
 <img src="https://user-images.githubusercontent.com/92971684/174329938-b2d078ce-c513-4aae-b822-7226c0dc49aa.png" width="800" alt="顯示物件筆數"/><br/>
 
@@ -80,8 +80,6 @@
         - 會員大頭貼照片儲存
 * Web Crawler
     * Python : `BeautifulSoup`
-
-
 
 
 ## 聯絡方式 <a name="聯絡方式"/>
