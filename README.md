@@ -27,14 +27,22 @@
 - [聯絡方式](#聯絡方式)　
 
 
-## 網站導覽 <a name="網站導覽"/> 
-* 查詢關鍵字 :
+## 網站導覽 
+<br/>
 
-<img src="https://user-images.githubusercontent.com/92971684/174336839-6c70380e-7edb-4bbd-a7b1-e6b96ae258fc.gif" " alt="顯示物件筆數"/><br/>
+* 查詢關鍵字 :
+<br/>
+
+![show](https://user-images.githubusercontent.com/92971684/174338938-8142b3d8-9598-458b-9c48-3a0a93e89736.gif)
+
+<br/>
 
 * 篩選物件 :
+<br/>
 
 ![2](https://user-images.githubusercontent.com/92971684/174336916-f0e308a8-e764-4b96-83ed-047f0a1bbcbc.gif)
+
+<br/>
 
 * 顯示物件筆數 :
 
