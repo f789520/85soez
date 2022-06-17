@@ -12,25 +12,71 @@
 
 ![image](https://user-images.githubusercontent.com/92971684/174254355-e65064cb-4f09-42cf-a5ed-2328c9058ba1.png)
 
+## Table of Contents
+- [功能介紹](#功能介紹)
+    - [使用技術]
+
+
+- [前端技術](#前端技術)
+    - [React Router](#react-router)
+    - [React Context](#react-context)
+    - [React Table](#react-table)
+
+- [後端技術](#後端技術)
+    - [Hosting](#hosting)
+    - [Authentication](#authentication)
+    - [Firestore](#firestore)
+    - [Storage](#storage)
+- [聯絡方式](#聯絡方式)
+
+
+
+
+
+
+## 功能介紹
+
+
+
+
+
+
+
+
 ## 使用技術
-### 前端
+
+### 前端技術 <a name="前端技術"/>
+* React 
+    * React Router <a name="react-router"/>
+    * React Context <a name="react-context"/>
+    * React Table : `useFilters`, `useSortBy`, `usePagination`...<a name="react-table"/>
+    * React Hooks : `useState`, `useEffect`, `useContext`...
 * HTML
 * CSS
 * Javascript
 * Responsive Web Design
-* React
-    * React Router 
-    * React Context 
-    * React Hooks : `useState`, `useEffect`, `useContext`...
 * Webpack & Babel
 * ESLint
-* 第三方套件:emailjs
+* 第三方套件:`emailjs`
  
-### 後端
+### 後端技術 <a name="後端技術"/>
 * Firebase(version 9)
-    * Hosting 
-    * Authentication : 支援 Google 登入 
-    * Firestore 
-    * Storage 
+    * Hosting <a name="hosting"/>
+    * Authentication : 支援 Google 登入  <a name="authentication"/>
+    * Firestore  <a name="firestore"/>
+    * Storage <a name="storage"/>
 * Web Crawler
-    * Python:`BeautifulSoup`
+    * Python：`BeautifulSoup`
+
+
+
+
+## 聯絡方式 <a name="聯絡方式"/>
+
+:boy: 丁仁傑 Jen-Chieh, Ting
+<br/>
+
+:email: Email : f789520@gmail.com
+<br/>
+
+:mag: [Linkedin](https://www.linkedin.com/in/%E4%BB%81%E5%82%91-%E4%B8%81-a32590139/)
