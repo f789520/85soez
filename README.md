@@ -61,6 +61,8 @@
 
 ### 前端技術 <a name="前端技術"/>
 * React 
+    * Components
+    ![image](https://user-images.githubusercontent.com/92971684/174423623-a43fbcb8-e3b5-4a8e-aa86-6679fbb82a25.png)
     * React Router <a name="react-router"/>
       - SPA 路由功能 
     * React Context <a name="react-context"/>
@@ -75,7 +77,8 @@
 * Webpack & Babel
 * ESLint
 * 第三方套件 : `emailjs`
- 
+
+
 ### 後端技術 <a name="後端技術"/>
 * Firebase(version 9)
     * Hosting <a name="hosting"/>
